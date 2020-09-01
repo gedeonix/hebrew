@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/gedeonix/hebrew/issues"
   },
-  "homepage": "https://github.com/gedeonix/hebrew#readme"
+  "homepage": "https://github.com/gedeonix/hebrew#readme",
+  "dependencies": {
+    "jest": "^26.4.2"
+  }
 }
