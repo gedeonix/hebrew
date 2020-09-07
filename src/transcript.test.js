@@ -2,23 +2,58 @@ const transcript = require('./transcript');
 
 test('transcript', () => {
 
-    expect(transcript('אב')).toBe('’w') // alfabet
+    // alphabet
+    expect(transcript('א')).toBe('-') // alef
+    expect(transcript('ב')).toBe('w') // wet
+    expect(transcript('בּ')).toBe('b') // bet
+    expect(transcript('ג')).toBe('g') // gimel
+    expect(transcript('ד')).toBe('d') // dalet
+    expect(transcript('ה')).toBe('h') // he
+    expect(transcript('ו')).toBe('w') // waw
+    expect(transcript('ז')).toBe('z') // zajin
+    expect(transcript('ח')).toBe('ch') // chet
+    expect(transcript('ט')).toBe('t') // tet
+    expect(transcript('י')).toBe('j') // jud
+    expect(transcript('כ')).toBe('ch') // chaf
+    expect(transcript('ך')).toBe('ch') // chaf
+    expect(transcript('כּ')).toBe('k') // kaf
+    expect(transcript('ל')).toBe('l') // lamed
+    expect(transcript('מ')).toBe('m') // mem
+    expect(transcript('ם')).toBe('m') // mem
+    expect(transcript('נ')).toBe('n') // nun
+    expect(transcript('ן')).toBe('n') // nun
+    expect(transcript('ס')).toBe('s') // samech
+    expect(transcript('ע')).toBe('-') // ajin
+    expect(transcript('פ')).toBe('f') // fe
+    expect(transcript('ף')).toBe('f') // fe
+    expect(transcript('פּ')).toBe('p') // pe
+    expect(transcript('צ')).toBe('c') // cadi
+    expect(transcript('ץ')).toBe('c') // cadi
+    expect(transcript('ק')).toBe('k') // kof
+    expect(transcript('ר')).toBe('r') // resz
+    expect(transcript('שׁ')).toBe('sz') // szin
+    expect(transcript('שׂ')).toBe('s') // sin
+    expect(transcript('שׂ')).toBe('s') // sin
+    expect(transcript('ת')).toBe('t') // taw
 
-    expect(transcript('ל')).toBe('l')
+    expect(transcript('אב')).toBe('-w') // alfabet
 
-    expect(transcript('כּתב')).toBe('ktw') // pisać
-    expect(transcript('והיא')).toBe('wchj’') // matres lectionis
+    expect(transcript('לִשְׁלֹל שָׁלָל וְלָבֹז בַּז לְהָשִׁיב יָדְךָ עַל־חֳרָבוֹת נוֹשָׁבֹת וְאֶל־עַם מְאֻסָּף מִגּוֹיִם עֹשֶׂה מִקְנֶה וְקִנְיָן יֹשְׁבֵי עַל־טַבּוּר הָאָרֶץ')).toBe('lִsְׁlֹl sָׁlָl wְlָwֹz wַּz lְhָsִׁjw jָdְchָ -ַl־chֳrָwwֹt nwֹsָׁwֹt wְ-ֶl־-ַm mְ-ֻsָּf mִgּwֹjִm -ֹsֶׂh mִkְnֶh wְkִnְjָn jֹsְׁwֵj -ַl־tַwּwּr hָ-ָrֶc')
+    expect(transcript('לשלל שלל ולבז בז להשיב ידך על חרבות נושבת ואל עם מאסף מגוים עשה מקנה וקנין ישבי על טבור הארץ')).toBe('lsll sll wlwz wz lhsjw jdch -l chrwwt nwswt w-l -m m-sf mgwjm -sh mknh wknjn jswj -l twwr h-rc')
 
-    // TODO
+    // expect(transcript('כּתב')).toBe('ktw') // pisać
+    // expect(transcript('והיא')).toBe('wchj’') // matres lectionis
+
+    // TODO - various examples
     // expect(transcript('|\u05dc|\u05b4|\u05e9|\u05c1|\u05b0|\u05dc|\u05b9|\u05a5|\u05dc')).toBe('|l|ִ|s|ׁ|ְ|l|ֹ|֥|l')
-    expect(transcript('לִשְׁלֹ֥ל')).toBe('l?s??l??l')
+    // expect(transcript('לִשְׁלֹ֥ל')).toBe('l?s??l??l')
     // expect(transcript('לִשְׁלֹ֥ל')).toBe('l')
     // expect(transcript('לִלְלל')).toBe('lִlְll')
 
-    // TODO - samogłoski
+    // TODO - vowels
 
+    // Ez 38:12
+    expect(transcript('לִשְׁלֹ֥ל שָׁלָ֖ל וְלָבֹ֣ז בַּ֑ז לְהָשִׁ֨יב יָדְךָ֜ עַל־חֳרָבֹ֣ות נֹושָׁבֹ֗ת וְאֶל־עַם֙ מְאֻסָּ֣ף מִגֹּויִ֔ם עֹשֶׂה֙ מִקְנֶ֣ה וְקִנְיָ֔ן יֹשְׁבֵ֖י עַל־טַבּ֥וּר הָאָֽרֶץ׃')).toBe('lִsְׁlֹ֥l sָׁlָ֖l wְlָwֹ֣z wַּ֑z lְhָsִׁ֨jw jָdְchָ֜ -ַl־chֳrָwֹ֣wt nֹwsָׁwֹ֗t wְ-ֶl־-ַm֙ mְ-ֻsָּ֣f mִgֹּwjִ֔m -ֹsֶׂh֙ mִkְnֶ֣h wְkִnְjָ֔n jֹsְׁwֵ֖j -ַl־tַwּ֥wּr hָ-ָֽrֶc׃')
 
-    // Ez 38:12 - todo
-    // expect(transcript('לִשְׁלֹ֥ל שָׁלָ֖ל וְלָבֹ֣ז בַּ֑ז לְהָשִׁ֨יב יָדְךָ֜ עַל־חֳרָבֹ֣ות נֹושָׁבֹ֗ת וְאֶל־עַם֙ מְאֻסָּ֣ף מִגֹּויִ֔ם עֹשֶׂה֙ מִקְנֶ֣ה וְקִנְיָ֔ן יֹשְׁבֵ֖י עַל־טַבּ֥וּר הָאָֽרֶץ׃')).toBe('???')
-
+    // TODO - simple dictionary
 })
