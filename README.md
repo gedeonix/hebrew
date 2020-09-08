@@ -1,4 +1,4 @@
-# Gedeonix Hebrew Lib (transcript to pl)
+# Gedeonix Hebrew Lib (transcription of Hebrew into Polish)
 
 ## Test examples
 
@@ -43,8 +43,14 @@
     license: Biblia Hebraica Stuttgartensia, © 1977/1997 Deutsche Bibelgesellschaft
 
 ## Resource
-https://en.wikipedia.org/wiki/Unicode_and_HTML_for_the_Hebrew_alphabet
-https://en.wikipedia.org/wiki/Hebrew_diacritics
 
-http://unicode.org/charts/PDF/U0590.pdf
-http://unicode.org/charts/PDF/UFB00.pdf
+### Unicode
+ * https://en.wikipedia.org/wiki/Unicode_and_HTML_for_the_Hebrew_alphabet
+ * https://en.wikipedia.org/wiki/Hebrew_diacritics
+
+ * http://unicode.org/charts/PDF/U0590.pdf
+ * Alphabetic Presentation Forms - http://unicode.org/charts/PDF/UFB00.pdf
+
+### Transcript (pl)
+ * Transliteracja i transkrypcja alfabetu hebrajskiego - https://rbl.ptt.net.pl/index.php/RBL/article/view/480/510
+    
