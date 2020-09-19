@@ -18,5 +18,8 @@
   "homepage": "https://github.com/gedeonix/hebrew#readme",
   "dependencies": {
     "jest": "^26.4.2"
+  },
+  "devDependencies": {
+    "prettier": "2.1.2"
   }
 }
