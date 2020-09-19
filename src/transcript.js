@@ -128,7 +128,7 @@ const code = {
     //'צּ': 'c',
     //'קּ': 'c',
 
-    'ק': 'q', // qof
+    'ק': 'k', // qof
     //'קּ': 'q',
 
     'ר': 'r', // resz
@@ -136,8 +136,8 @@ const code = {
 
     //'שִׁי': 'szi', // TODO
 
-    'שׁ': 'sz', // szin [05e9+05c1]
-    'שׁ': 'sz', // szin
+    '\u05e9\u05c1': 'sz', // szin [05e9+05c1]
+    '\ufb2a': 'sz', // szin
     //'שּׁ': 'sz',
 
     'שׂ': 's', // sin
@@ -169,4 +169,5 @@ function transcript(str) {
         return value || i
     })
 }
+
 module.exports = transcript

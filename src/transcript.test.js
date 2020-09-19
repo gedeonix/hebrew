@@ -1,4 +1,4 @@
-const transcript = require('./transcript');
+const transcript = require('./transcript')
 
 describe('transcript', () => {
 
@@ -33,7 +33,7 @@ describe('transcript', () => {
         expect(transcript('פּ')).toBe('p') // pe
         expect(transcript('צ')).toBe('c') // cade
         expect(transcript('ץ')).toBe('c') // cade
-        expect(transcript('ק')).toBe('q') // qof
+        expect(transcript('ק')).toBe('k') // kof
         expect(transcript('ר')).toBe('r') // resz
 
         expect(transcript('שׁ')).toBe('sz') // szin
@@ -60,7 +60,13 @@ describe('transcript', () => {
 
     })
 
+    test('matres lectionis', () => {
+
+        //TODO
+    })
+
     test('simple words', () => {
+
         expect(transcript('אָדָם')).toBe('adam')
 
         expect(transcript('שׁ')).toBe('sz')
@@ -80,10 +86,13 @@ describe('transcript', () => {
         // expect(transcript('לשלל שלל ולבז בז להשיב ידך על חרבות נושבת ואל עם מאסף מגוים עשה מקנה וקנין ישבי על טבור הארץ')).toBe('lsll sll wlwz wz lhsjw jdch -l chrwwt nwswt w-l -m m-sf mgwjm -sh mknh wknjn jswj -l twwr h-rc')
 
         // Ez 38:12
-        expect(transcript('לִשְׁלֹ֥ל שָׁלָ֖ל וְלָבֹ֣ז בַּ֑ז לְהָשִׁ֨יב יָדְךָ֜ עַל־חֳרָבֹ֣ות נֹושָׁבֹ֗ת וְאֶל־עַם֙ מְאֻסָּ֣ף מִגֹּויִ֔ם עֹשֶׂה֙ מִקְנֶ֣ה וְקִנְיָ֔ן יֹשְׁבֵ֖י עַל־טַבּ֥וּר הָאָֽרֶץ׃')).toBe('liszelֹ֥l szala֖l welawֹ֣z ba֑z lehaszi֨jw jadecha֜ -al־chֳrawֹ֣wt nֹwszawֹ֗t weel־-am֙ meֻs?a֣f mig?ֹwji֔m -ֹsׂeh֙ miqene֣h weqineja֔n jֹszewe֖j -al־tab֥w?r haaֽrec.') // TODO
+        expect(transcript('לִשְׁלֹ֥ל שָׁלָ֖ל וְלָבֹ֣ז בַּ֑ז לְהָשִׁ֨יב יָדְךָ֜ עַל־חֳרָבֹ֣ות נֹושָׁבֹ֗ת וְאֶל־עַם֙ מְאֻסָּ֣ף מִגֹּויִ֔ם עֹשֶׂה֙ מִקְנֶ֣ה וְקִנְיָ֔ן יֹשְׁבֵ֖י עַל־טַבּ֥וּר הָאָֽרֶץ׃')).toBe('liszelֹ֥l szala֖l welawֹ֣z ba֑z lehaszi֨jw jadecha֜ -al־chֳrawֹ֣wt nֹwszawֹ֗t weel־-am֙ meֻs?a֣f mig?ֹwji֔m -ֹsׂeh֙ mikene֣h wekineja֔n jֹszewe֖j -al־tab֥w?r haaֽrec.') // TODO
     })
 
     test('various examples', () => {
+
+        // expect(transcript('ניקוד')).toBe('nikud')
+        expect(transcript('מלא כתיב')).toBe('ml chtjw')
 
         // expect(transcript('כּתב')).toBe('ktw') // pisać
         // expect(transcript('והיא')).toBe('whj') // matres lectionis

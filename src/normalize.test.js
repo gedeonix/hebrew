@@ -47,10 +47,11 @@ describe('normalize', () => {
         expect(normalize('שּ')).toBe('שּ')
         expect(normalize('תּ')).toBe('תּ')
 
-        expect(normalize('וֹ')).toBe('?')
-        expect(normalize('בֿ')).toBe('?')
-        expect(normalize('כֿ')).toBe('?')
-        expect(normalize('פֿ')).toBe('?')
-        expect(normalize('ﭏ')).toBe('?')
+        expect(normalize('וֹ')).toBe('וׄ')
+        expect(normalize('בֿ')).toBe('בֿ')
+        expect(normalize('כֿ')).toBe('כֿ')
+        expect(normalize('פֿ')).toBe('פֿ')
+
+        // expect(normalize('ﭏ')).toBe('?')
     })
 })
