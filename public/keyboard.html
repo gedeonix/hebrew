@@ -1,0 +1,65 @@
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Bible mind</title>
+  <link type="text/css" href="css/style.css" rel="stylesheet" charset="utf-8">
+  <link type="text/css" href="css/hebrew.css" rel="stylesheet" charset="utf-8">
+</head>
+<body class="hebrew">
+<div id="app">
+  <div class="container">
+    <h1>Keyboars - hebrew</h1>
+
+    <div class="row">
+      <textarea ref="out" dir="rtl" class="textarea hebrew" rows="3" v-model="text"></textarea>
+    </div>
+
+    <br>
+
+    <div dir="rtl">
+      <button class="key hebrew" type="button" @click="key('א')">א</button>
+      <button class="key hebrew" type="button" @click="key('ב')">ב</button>
+      <button class="key hebrew" type="button" @click="key('ג')">ג</button>
+      <button class="key hebrew" type="button" @click="key('ד')">ד</button>
+      <button class="key hebrew" type="button" @click="key('ה')">ה</button>
+      <button class="key hebrew" type="button" @click="key('ו')">ו</button>
+      <button class="key hebrew" type="button" @click="key('ז')">ז</button>
+      <button class="key hebrew" type="button" @click="key('ח')">ח</button>
+      <button class="key hebrew" type="button" @click="key('ט')">ט</button>
+      <button class="key hebrew" type="button" @click="key('י')">י</button>
+      <button class="key hebrew" type="button" @click="key('ך')">ך</button>
+      <button class="key hebrew" type="button" @click="key('כ')">כ</button>
+      <button class="key hebrew" type="button" @click="key('ל')">ל</button>
+      <button class="key hebrew" type="button" @click="key('ם')">ם</button>
+      <button class="key hebrew" type="button" @click="key('מ')">מ</button>
+      <button class="key hebrew" type="button" @click="key('ן')">ן</button>
+    </div>
+
+    <br>
+    <p dir="rtl">{{text}}</p>
+    <hr>
+
+    <p>SBL fonts are made available without cost to individual scholars for non-profit use</p>
+  </div>
+</div>
+<script defer src="https://unpkg.com/vue@next"></script>
+<script type="module">
+    Vue.createApp({
+        data() {
+            return {
+                text: 'בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָרֶץ׃'
+            }
+        },
+        methods: {
+            key(key) {
+                this.$refs.out.focus()
+                document.execCommand('insertText', false, key)
+            }
+        }
+    }).mount('#app')
+</script>
+</body>
+</html>

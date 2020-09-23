@@ -1,6 +1,6 @@
 @font-face {
     font-family: "SBL Hebrew";
-    src: url("//www.bible-researcher.com/hebrew/SBL_Hbrw.ttf");
+    src: url("../font/SBL_Hbrw.ttf");
 }
 
 .hebrew {

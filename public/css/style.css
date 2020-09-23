@@ -49,6 +49,30 @@ body {
     padding: 0;
 }
 
+/* COMPONENTS */
+.textarea {
+    font-size: 4rem;
+    background-color: #fff8d7;
+    color: crimson;
+    width: 100%;
+    padding: 0.7rem 0.5rem;
+    -webkit-appearance: none;
+    width: 100%;
+}
+
+.key {
+    background-color: #ffffff;
+    border-radius: 5px;
+    padding: 6px 6px;
+    font-size: 3rem;
+    min-width: 3rem;
+}
+
+.key:hover {
+    background-color: #d0d0d0;
+    cursor: pointer;
+}
+
 .box {
     display: flex;
     flex-direction: column;
