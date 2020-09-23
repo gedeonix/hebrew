@@ -40,13 +40,13 @@ describe("transcript", () => {
 
   test("volwes (a, e, o, i, u)", () => {
     expect(transcript("שִׁ")).toBe("szi");
-    expect(transcript("ְ")).toBe("e");
+    expect(transcript("ְ")).toBe("ᵊ");
 
-    expect(transcript("בְּ")).toBe("be");
+    expect(transcript("בְּ")).toBe("bᵊ");
     expect(transcript("בַּ")).toBe("ba");
     expect(transcript("בָּ")).toBe("ba");
     expect(transcript("בֶּ")).toBe("be");
-    expect(transcript("בְּ")).toBe("be");
+    expect(transcript("בְּ")).toBe("bᵊ");
     // TODO
   });
 
@@ -55,6 +55,12 @@ describe("transcript", () => {
   });
 
   test("simple words", () => {
+
+    expect(transcript("אָב")).toBe("aw"); // ojciec
+    expect(transcript("גַב")).toBe("gaw"); // plecy
+
+    expect(transcript("דְּבַשׁ")).toBe("dᵊwasz"); // miód
+
     expect(transcript("אָדָם")).toBe("adam");
 
     expect(transcript("שׁ")).toBe("sz");

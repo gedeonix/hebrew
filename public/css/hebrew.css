@@ -1,0 +1,20 @@
+@font-face {
+    font-family: "SBL Hebrew";
+    src: url("//www.bible-researcher.com/hebrew/SBL_Hbrw.ttf");
+}
+
+.hebrew {
+    font-family: 'SBL Hebrew', serif;
+}
+
+.hebrew_accent {
+    color: #0000ff;
+}
+
+.hebrew_point {
+    color: #ff6565;
+}
+
+.hebrew_letter {
+    color: #3dad3d;
+}

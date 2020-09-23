@@ -1,0 +1,54 @@
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Bible mind</title>
+  <link type="text/css" href="css/style.css" rel="stylesheet" charset="utf-8">
+  <link type="text/css" href="css/hebrew.css" rel="stylesheet" charset="utf-8">
+</head>
+<body class="hebrew">
+<div id="app" v-cloak>
+  <div class="container">
+    <h1>Unicode - hebrew</h1>
+    <div class="row">
+      <div class="box" v-for="item in tabs" :key="item.code">
+        <div class="box-char hebrew" :class="'hebrew_'+item.type">{{ item.code }}</div>
+        <div class="box-code">{{ item.code.charCodeAt(0).toString(16) }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+<script defer src="https://unpkg.com/vue@next"></script>
+<script type="module">
+    Vue.createApp({
+        data() {
+            return {
+                tabs: [
+                    ...this.tablica('\u0591', '\u05af', 'accent'),
+                    ...this.tablica('\u05b0', '\u05c7', 'point'),
+                    ...this.tablica('\u05d0', '\u05ea', 'letter'),
+                    ...this.tablica('\u05ef', '\u05f4', 'misc')
+                ]
+            }
+        },
+        methods: {
+            tablica(from, to, type) {
+                let code = from.charCodeAt(0)
+                const size =to.charCodeAt(0) - code
+
+                let result = new Array(size)
+                for(let i =0; i<size; i++) {
+                    result[i] = {
+                        code: String.fromCharCode(parseInt(code + i, 10)),
+                        type: type
+                    }
+                }
+                return result
+            }
+        }
+    }).mount('#app')
+</script>
+</body>
+</html>

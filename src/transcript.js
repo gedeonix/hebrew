@@ -36,7 +36,7 @@ const code = {
   // '\u05b4\u05d9': 'i', // TODO
   //'\u05af': '?', // masora circle
 
-  "\u05b0": "e", // szwa (bardzo krótkie e)
+  "\u05b0": "ᵊ", //szewa (bardzo krótkie e)
   "\u05b1": "?", //segol
   "\u05b2": "a", //patah
   "\u05b3": "?", //qamats
@@ -65,8 +65,8 @@ const code = {
   "\u05c7": "?",
 
   // Letter
-  א: "", // alef
-  בּ: "b", // bet
+  א: "", // alef (a, e, i, o, u)
+  בּ: "b", // betּ
   ב: "w", // wet
   גּ: "g", // gimel
   ג: "g",
@@ -116,9 +116,12 @@ const code = {
 const re = new RegExp(Object.keys(code).join("|"), "gi");
 
 function transcript(str) {
-  return str.replace(re, (i, index) => {
-    // console.log(i, index)
+  return str.replace(re, (i, index, text) => {
+    let last = index === text.length - 1
     let value = code[i];
+
+      // console.log(i, index, '['+text+']', value, last)
+
     if (value === "") return value;
     return value || i;
   });
