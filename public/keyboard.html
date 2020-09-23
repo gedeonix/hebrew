@@ -129,12 +129,14 @@
 
     <hr>
     <p dir="rtl" class="text">{{text}}</p>
+    <p class="text">{{translate()}}</p>
     <hr>
     <p>SBL fonts are made available without cost to individual scholars for non-profit use</p>
   </div>
 </div>
 <script defer src="https://unpkg.com/vue@next"></script>
 <script type="module">
+    import { transcript } from '../src/transcript.js'
     Vue.createApp({
         data() {
             return {
@@ -145,6 +147,9 @@
             key(key) {
                 this.$refs.out.focus()
                 document.execCommand('insertText', false, key)
+            },
+            translate() {
+                return transcript(this.text)
             }
         }
     }).mount('#app')

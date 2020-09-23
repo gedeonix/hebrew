@@ -31,7 +31,7 @@ html {
 
 /* CONTENT */
 h1 {
-    font-size: 3rem;
+    font-size: 2rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
@@ -103,5 +103,5 @@ body {
 }
 
 .text {
-    font-size: 3rem;
+    font-size: 2.5rem;
 }

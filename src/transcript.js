@@ -115,7 +115,7 @@ const code = {
 
 const re = new RegExp(Object.keys(code).join("|"), "gi");
 
-function transcript(str) {
+export function transcript(str) {
   return str.replace(re, (i, index, text) => {
     let last = index === text.length - 1
     let value = code[i];
@@ -126,5 +126,3 @@ function transcript(str) {
     return value || i;
   });
 }
-
-module.exports = transcript;
