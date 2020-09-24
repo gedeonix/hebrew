@@ -1,32 +1,32 @@
 @font-face {
-    font-family: "SBL Hebrew";
-    src: url("../font/SBL_Hbrw.ttf");
+  font-family: 'SBL Hebrew';
+  src: url('../font/SBL_Hbrw.ttf');
 }
 
 .hebrew {
-    font-family: 'SBL Hebrew', serif;
+  font-family: 'SBL Hebrew', serif;
 }
 
 .hebrew_accent {
-    color: #0000ff;
+  color: #0000ff;
 }
 
 .hebrew_point {
-    color: #ff6565;
+  color: #ff6565;
 }
 
 .hebrew_letter {
-    color: #3dad3d;
+  color: #3dad3d;
 }
 
 .hebrew-red {
-    color: #c62c2c;
+  color: #c62c2c;
 }
 
 .hebrew-blue {
-    color: #28289a;
+  color: #28289a;
 }
 
 .hebrew-green {
-    color: #34a534;
+  color: #34a534;
 }
