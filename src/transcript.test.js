@@ -1,4 +1,4 @@
-const transcript = require("./transcript");
+import { transcript } from "./transcript"
 
 describe("transcript", () => {
   test("alphabet", () => {

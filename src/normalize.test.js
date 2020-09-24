@@ -1,4 +1,4 @@
-const normalize = require("./normalize");
+import { normalize } from "./normalize"
 
 describe("normalize", () => {
   test("presentation forms", () => {
