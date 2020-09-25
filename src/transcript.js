@@ -42,10 +42,11 @@ const code = {
   '\u05b3': '?', //qamats
 
   '\u05b4\u05d9': 'i', // chirk + jud = i
+  '\u05d9\u05b4': 'ji', // jud + chirk = ji
 
   '\u05b4': 'i', // chirik = i
   '\u05b5': 'e', // cere = długie e
-  '\u05b6': 'e', // segol
+  '\u05b6': 'e', // segol = któtkie e
   '\u05b7': 'a', // patah
   '\u05b8': 'a', // kamac
   '\u05b9': 'o', // cholam
@@ -97,9 +98,12 @@ const code = {
   ר: 'r', // resz
 
   //'שִׁי': 'szi', // TODO
-
+  'שּׁ': 'szsz',
   שׁ: 'sz', // szin
+
+  'שּׂ': 'ss',
   שׂ: 's', // sin
+
   תּ: 't', // taw
   ת: 't',
 

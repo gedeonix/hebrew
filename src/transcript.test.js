@@ -49,10 +49,13 @@ describe('transcript', () => {
     expect(transcript('בְּ')).toBe('bᵊ')
 
     expect(transcript('אִי')).toBe('i')
+    expect(transcript('איִ')).toBe('ji')
     expect(transcript('אֱ')).toBe('e')
     expect(transcript('לֹ')).toBe('lo')
+    expect(transcript('וְ')).toBe('wᵊ') // spójnik i oraz
 
     expect(transcript('ֹהִ')).toBe('ohi') // he pomiędzy samogłoskami
+    expect(transcript('האאא')).toBe('h') // he na początku (przedimek określony)
   })
 
   test('matres lectionis', () => {
@@ -69,6 +72,10 @@ describe('transcript', () => {
 
     expect(transcript('שׁ')).toBe('sz')
     expect(transcript('שִׁ')).toBe('szi')
+
+    expect(transcript('שּׁ')).toBe('szsz')
+    expect(transcript('שּׂ')).toBe('ss')
+
     // expect(transcript('שִׁי')).toBe('szi')
 
     expect(transcript('בְּרֵאשִׁית')).toBe('bᵊreszit')
@@ -79,7 +86,7 @@ describe('transcript', () => {
   })
 
   test('function', () => {
-      expect(transcript('אֵת')).toBe('et') // po tym wyrazie bedzie dopełnienie w bierniku
+      expect(transcript('אֵת')).toBe('et') // po tym wyrazie będzie dopełnienie w bierniku (kogo? co?)
   })
 
   test('verses', () => {
