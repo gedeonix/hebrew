@@ -36,22 +36,22 @@ const code = {
   // '\u05b4\u05d9': 'i', // TODO
   //'\u05af': '?', // masora circle
 
-  '\u05b0': 'ᵊ', //szewa (bardzo krótkie e)
-  '\u05b1': '?', //segol
+  '\u05b0': 'ᵊ', //szewa = bardzo krótkie e
+  '\u05b1': 'e', //chataf-segol = bardzo krótkie e
   '\u05b2': 'a', //patah
   '\u05b3': '?', //qamats
 
-  //'\u05d9\u05b4': 'i', // hireq + jud
+  '\u05b4\u05d9': 'i', // chirk + jud = i
 
-  '\u05b4': 'i', // hireq (i)
-  '\u05b5': 'e', // sere (d\u0142ugie e)
+  '\u05b4': 'i', // chirik = i
+  '\u05b5': 'e', // cere = długie e
   '\u05b6': 'e', // segol
   '\u05b7': 'a', // patah
-  '\u05b8': 'a', // qames
-  '\u05b9': '?',
+  '\u05b8': 'a', // kamac
+  '\u05b9': 'o', // cholam
   '\u05ba': '?',
   '\u05bb': '?',
-  '\u05bc': '?', // dageh
+  '\u05bc': '?', // dagesz
   '\u05bd': '?',
   '\u05be': '?',
   '\u05bf': '?',

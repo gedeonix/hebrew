@@ -47,7 +47,12 @@ describe('transcript', () => {
     expect(transcript('בָּ')).toBe('ba')
     expect(transcript('בֶּ')).toBe('be')
     expect(transcript('בְּ')).toBe('bᵊ')
-    // TODO
+
+    expect(transcript('אִי')).toBe('i')
+    expect(transcript('אֱ')).toBe('e')
+    expect(transcript('לֹ')).toBe('lo')
+
+    expect(transcript('ֹהִ')).toBe('ohi') // he pomiędzy samogłoskami
   })
 
   test('matres lectionis', () => {
@@ -65,11 +70,16 @@ describe('transcript', () => {
     expect(transcript('שׁ')).toBe('sz')
     expect(transcript('שִׁ')).toBe('szi')
     // expect(transcript('שִׁי')).toBe('szi')
-    // expect(transcript('בְּרֵאשִׁית')).toBe('bereszit')
+
+    expect(transcript('בְּרֵאשִׁית')).toBe('bᵊreszit')
   })
 
   test('patah furtivum', () => {
     // expect(transcript('רוּחַ')).toBe('ruah')
+  })
+
+  test('function', () => {
+      expect(transcript('אֵת')).toBe('et') // po tym wyrazie bedzie dopełnienie w bierniku
   })
 
   test('verses', () => {
