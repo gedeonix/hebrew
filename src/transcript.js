@@ -177,7 +177,7 @@ export function transcript(str) {
       // pomijamy, gdy waw
       if( a!== '\u05d5') {
 
-        if (meta.first === false && meta.last === false) {
+        if (meta.first === false /*&& meta.last === false*/) {
           // TODO sprawdzić, czy wczesniej jest długa lub krótka samogłoska, ale nie szewa
           value = value + value //podwojenie
         }
