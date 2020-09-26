@@ -92,7 +92,9 @@ describe('transcript', () => {
     expect(transcript('שְׁמוֹת')).toBe('szᵊmot')
     expect(transcript('מִצְרָיְמָה')).toBe('micrajma')
     expect(transcript('וּבֵיתוֹ')).toBe('uweto')
-    expect(transcript('בָּאוּ׃')).toBe('bau.') //TODO
+
+    expect(transcript('בָּאוּ')).toBe('bau')
+    expect(transcript('בָּאוּ׃')).toBe('bau.')
   })
 
   test('patah furtivum', () => {
