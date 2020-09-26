@@ -56,7 +56,7 @@
       <button class="key hebrew" type="button" @click="key('ט')">ט<div class="key_name">tet</div></button>
       <button class="key hebrew" type="button" @click="key('י')">י<div class="key_name">jud</div></button>
       <button class="key hebrew" type="button" @click="key('כ')">כ<div class="key_name">chaf</div></button>
-      <button class="key hebrew" type="button" @click="key('ל')">ל<div class="key_name">lamed</div></button>
+      <button class="key hebrew" type="button" @clsamogłoskaick="key('ל')">ל<div class="key_name">lamed</div></button>
       <button class="key hebrew" type="button" @click="key('מ')">מ<div class="key_name">mem</div></button>
       <button class="key hebrew" type="button" @click="key('נ')">נ<div class="key_name">nun</div></button>
       <button class="key hebrew" type="button" @click="key('ס')">ס<div class="key_name">samech</div></button>
@@ -140,8 +140,10 @@
     Vue.createApp({
         data() {
             return {
-                // text: 'בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָרֶץ׃'
-                text: 'וְאֵלֶּה שְׁמוֹת בְּנֵי יִשְׂרָאֵל הַבָּאִים מִצְרָיְמָה אֵת יַעֲקֹב אִישׁ וּבֵיתוֹ בָּאוּ׃'
+                text:  '1 וְאֵלֶּה שְׁמוֹת בְּנֵי יִשְׂרָאֵל הַבָּאִים מִצְרָיְמָה אֵת יַעֲקֹב אִישׁ וּבֵיתוֹ בָּאוּ׃ '
+                      + '2 רְאוּבֵן שִׁמְעוֹן לֵוִי וִיהוּדָה׃ '
+                      + '3 יִשָּׂשכָר זְבוּלֻן וּבְנְיָמִן׃ '
+                      + '4 דָּן וְנַפְתָּלִי גָּד וְאָשֵׁר׃'
             }
         },
         methods: {

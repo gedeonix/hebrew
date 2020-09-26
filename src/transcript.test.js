@@ -87,6 +87,9 @@ describe('transcript', () => {
 
     expect(transcript('בְּרֵאשִׁית')).toBe('bᵊreszit')
     expect(transcript('שְׁמוֹת')).toBe('szᵊmot')
+    expect(transcript('מִצְרָיְמָה')).toBe('micrajma')
+    expect(transcript('וּבֵיתוֹ')).toBe('uweto')
+    expect(transcript('בָּאוּ׃')).toBe('bau.') //TODO
   })
 
   test('patah furtivum', () => {
@@ -100,7 +103,11 @@ describe('transcript', () => {
 
   test('verses', () => {
     expect(transcript('בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָרֶץ׃')).toBe('bᵊreszit bara elohim et haszszamajim wᵊet haarec.')
-    expect(transcript('וְאֵלֶּה שְׁמוֹת בְּנֵי יִשְׂרָאֵל הַבָּאִים מִצְרָיְמָה אֵת יַעֲקֹב אִישׁ וּבֵיתוֹ בָּאוּ׃')).toBe('wᵊelle szᵊmot bᵊne jisᵊrael habbaim micᵊrajᵊma et jaakow isz uweto bau.')
+
+    expect(transcript('וְאֵלֶּה שְׁמוֹת בְּנֵי יִשְׂרָאֵל הַבָּאִים מִצְרָיְמָה אֵת יַעֲקֹב אִישׁ וּבֵיתוֹ בָּאוּ׃')).toBe('wᵊelle szᵊmot bᵊne jisrael habbaim micrajma et jaakow isz uweto bau.')
+    expect(transcript('רְאוּבֵן שִׁמְעוֹן לֵוִי וִיהוּדָה׃')).toBe('rᵊuuwen szimon lewi wihuuda.')
+    expect(transcript('יִשָּׂשכָר זְבוּלֻן וּבְנְיָמִן׃')).toBe('jissaschar zᵊwuulun uwnjamin.')
+    expect(transcript('דָּן וְנַפְתָּלִי גָּד וְאָשֵׁר׃')).toBe('dan wᵊnafttali gad wᵊaszer.')
 
     // expect(transcript('לִשְׁלֹל שָׁלָל וְלָבֹז בַּז לְהָשִׁיב יָדְךָ עַל־חֳרָבוֹת נוֹשָׁבֹת וְאֶל־עַם מְאֻסָּף מִגּוֹיִם עֹשֶׂה מִקְנֶה וְקִנְיָן יֹשְׁבֵי עַל־טַבּוּר הָאָרֶץ')).toBe('lִsְׁlֹl sָׁlָl wְlָwֹz wַּz lְhָsִׁjw jָdְchָ -ַl־chֳrָwwֹt nwֹsָׁwֹt wְ-ֶl־-ַm mְ-ֻsָּf mִgּwֹjִm -ֹsֶׂh mִkְnֶh wְkִnְjָn jֹsְׁwֵj -ַl־tַwּwּr hָ-ָrֶc')
     // expect(transcript('לשלל שלל ולבז בז להשיב ידך על חרבות נושבת ואל עם מאסף מגוים עשה מקנה וקנין ישבי על טבור הארץ')).toBe('lsll sll wlwz wz lhsjw jdch -l chrwwt nwswt w-l -m m-sf mgwjm -sh mknh wknjn jswj -l twwr h-rc')
@@ -123,8 +130,5 @@ describe('transcript', () => {
 
   test('simple', () => {
     // expect(transcript('הַבָּאִים')).toBe('habbaim') // przybyli - imiesłów czynny (przybywający)
-    // expect(transcript('מִצְרָיְמָה')).toBe('micᵊrajᵊma')
-    // expect(transcript('וּבֵיתוֹ')).toBe('uweto')
-    expect(transcript('בָּאוּ׃')).toBe('bau.')
   })
 })

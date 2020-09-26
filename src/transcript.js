@@ -38,28 +38,29 @@ const code = {
 
   '\u05b0': 'ᵊ', //szewa = bardzo krótkie e
   '\u05b1': 'e', //chataf-segol = bardzo krótkie e
-  '\u05b2': 'a', //patah
-  '\u05b3': '?', //qamats
+  '\u05b2': 'a', //patach
+  '\u05b3': '?', //kamac
 
   // jud
-  '\u05b4\u05d9': 'i', // chirk + jud = i
+  '\u05b4\u05d9': 'i', // chirk + jud = i (mamy tylko dwa przypadki utraty jud przy: chirik i cere)
   '\u05b5\u05d9': 'e', // cere + jud = e
-
-  '\u05d9\u05b4': 'ji', // jud + chirk = ji
+  '\u05d9\u05b4': 'ji', // jud + chirk = ji (inna kolejność, najpierw jud)
 
   // waw
   '\u05d5\u05bc': 'u', // waw + dagesz (mapik) = u
   '\u05d5\u05b9': 'o', // waw + cholam = o
 
+  // he
   '\u05b6\u05d4': 'e', // segol + he = któtkie e
+
   '\u05b4': 'i', // chirik = i
-  '\u05b5': 'e', // cere = długie e
+  '\u05b5': 'e', // cere = długie egetB
   '\u05b6': 'e', // segol = któtkie e
   '\u05b7': 'a', // patah
   '\u05b8': 'a', // kamac
   '\u05b9': 'o', // cholam
   '\u05ba': '?',
-  '\u05bb': '?',
+  '\u05bb': 'u', // kubuc
   '\u05bc': '?', // dagesz
   '\u05bd': '?',
   '\u05be': '?',
@@ -109,9 +110,9 @@ const code = {
   //'שִׁי': 'szi', // TODO
   'שּׁ': 'szsz',
   שׁ: 'sz', // szin
-
   'שּׂ': 'ss',
   שׂ: 's', // sin
+  ש: 's',
 
   תּ: 't', // taw
   ת: 't',
@@ -129,6 +130,16 @@ const code = {
 const END = '׃'
 const SPACE = ' '
 const DAGESH = 'ּ'
+const SHEVA = 'ְ'
+
+function isConsonant(text, index) {
+  let value = text[index]
+  return value >= '\u05d0' && value <= '\u05ea'
+}
+
+function isFirst(text, i) {
+  return i === 0 || text[i - 1] === SPACE
+}
 
 export function transcript(str) {
   const re = new RegExp(Object.keys(code).join('|'), 'gi')
@@ -141,21 +152,44 @@ export function transcript(str) {
       key: i,
       size: i.length,
       value: value,
-      dagesz: i.length === 2 && i[1] === DAGESH
+      dagesz: i.length === 2 && i[1] === DAGESH,
+      szewa: i === SHEVA
     }
     // console.log(i, index, '['+text+']', meta, text[index+1])
 
-    // 1) podwojenie przez dagesz
+    // 1) podwojenie środkowych samogłosek przez dagesz
     if(meta.dagesz === true && meta.first === false && meta.last === false) {
+      // TODO sprawdzić, czy wczesniej jest długa lub krótka samogłoska, ale nie szewa
       value = value + value //podwojenie
     }
 
-    // 2) he na końcu
+    // 2) nieme he na końcu
     if(i === 'ה' && meta.first === false && meta.last === true) {
       return ''
     }
 
+    // 3) niema szewa wewnątrz wyrazów
+    if(meta.szewa === true && meta.first === false && meta.last === false) {
+      if(isFirst(text, index - 1)) {
+        // szewa pod pierwszą spółgłoską - jest ona wymawiana
+      }
+      else {
+        if (isConsonant(text, index - 1)) {
+          return '' // niema szewa jest w środku wyrazu
+        }
+        if(isFirst(text, index - 2)) {
+          debugger
+        }
+        else {
+          return ''
+        }
+
+      }
+    }
+
+    // 4) pomijam nieme - alef i ajin
     if (value === '') return value
+
     return value || i
   })
 }
