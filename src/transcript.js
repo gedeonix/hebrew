@@ -115,7 +115,7 @@ const code = {
   ש: 's',
 
   תּ: 't', // taw
-  ת: 't',
+  ת: 't'
 
   // Ligature
   /*
@@ -141,14 +141,26 @@ function isFirst(text, i) {
   return i === 0 || text[i - 1] === SPACE
 }
 
+function isFirstConsonan(text, i) {
+  if (isFirst(text, i - 1) === false) {
+    if (isConsonant(text, i - 1)) {
+      return false
+    }
+    if (isFirst(text, i - 2) === false) {
+      return false
+    }
+  }
+  return true
+}
+
 export function transcript(str) {
   const re = new RegExp(Object.keys(code).join('|'), 'gi')
 
   return str.replace(re, (i, index, text) => {
     let value = code[i]
     let meta = {
-      first: index === 0 || text[index-1] === SPACE,
-      last: index === text.length - 1 || (text[index+i.length] === SPACE || text[index+i.length] === END),
+      first: index === 0 || text[index - 1] === SPACE,
+      last: index === text.length - 1 || (text[index + i.length] === SPACE || text[index + i.length] === END),
       key: i,
       size: i.length,
       value: value,
@@ -158,32 +170,20 @@ export function transcript(str) {
     // console.log(i, index, '['+text+']', meta, text[index+1])
 
     // 1) podwojenie środkowych samogłosek przez dagesz
-    if(meta.dagesz === true && meta.first === false && meta.last === false) {
+    if (meta.dagesz === true && meta.first === false && meta.last === false) {
       // TODO sprawdzić, czy wczesniej jest długa lub krótka samogłoska, ale nie szewa
       value = value + value //podwojenie
     }
 
     // 2) nieme he na końcu
-    if(i === 'ה' && meta.first === false && meta.last === true) {
+    if (i === 'ה' && meta.first === false && meta.last === true) {
       return ''
     }
 
-    // 3) niema szewa wewnątrz wyrazów
-    if(meta.szewa === true && meta.first === false && meta.last === false) {
-      if(isFirst(text, index - 1)) {
-        // szewa pod pierwszą spółgłoską - jest ona wymawiana
-      }
-      else {
-        if (isConsonant(text, index - 1)) {
-          return '' // niema szewa jest w środku wyrazu
-        }
-        if(isFirst(text, index - 2)) {
-          debugger
-        }
-        else {
-          return ''
-        }
-
+    // 3) niema szewa wewnątrz wyrazów (szewa pod pierwszą spółgłoską jest wymawiana)
+    if (meta.szewa === true && meta.first === false && meta.last === false) {
+      if (isFirstConsonan(text, index) === false) {
+        return '' // niema szewa jest w środku wyrazu
       }
     }
 
