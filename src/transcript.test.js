@@ -58,11 +58,14 @@ describe('transcript', () => {
     expect(transcript('וֹ')).toBe('o') // waw + cholam = o - na końcu (zaimek dzierżawczy jego)
     expect(transcript('וּ')).toBe('u') // waw + dagesz = u - na początku oznacza spójnik i
 
+    expect(transcript('רְאוּבֵן')).toBe('rᵊuwen') // test na wyłączoną duplikację przez dagesz
+
     expect(transcript('ֶה')).toBe('e') // segol + he = e
     expect(transcript( 'ֵי')).toBe('e') // cere + jud = e
 
     expect(transcript('ֹהִ')).toBe('ohi') // he pomiędzy samogłoskami
     expect(transcript('האאא')).toBe('h') // he na początku (przedimek określony)
+
   })
 
   test('matres lectionis', () => {
@@ -99,14 +102,15 @@ describe('transcript', () => {
   test('function', () => {
       expect(transcript('אֵת')).toBe('et') // po tym wyrazie będzie dopełnienie w bierniku (kogo? co?)
       expect(transcript('אֵת יַעֲקֹב')).toBe('et jaakow') // et - bliskość z wyrazem po - przyimek z, razem (z kimś, z czymś)
+    expect(transcript('הַבָּאִים')).toBe('habbaim') // przybyli - imiesłów czynny (przybywający)
   })
 
   test('verses', () => {
     expect(transcript('בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָרֶץ׃')).toBe('bᵊreszit bara elohim et haszszamajim wᵊet haarec.')
 
     expect(transcript('וְאֵלֶּה שְׁמוֹת בְּנֵי יִשְׂרָאֵל הַבָּאִים מִצְרָיְמָה אֵת יַעֲקֹב אִישׁ וּבֵיתוֹ בָּאוּ׃')).toBe('wᵊelle szᵊmot bᵊne jisrael habbaim micrajma et jaakow isz uweto bau.')
-    expect(transcript('רְאוּבֵן שִׁמְעוֹן לֵוִי וִיהוּדָה׃')).toBe('rᵊuuwen szimon lewi wihuuda.')
-    expect(transcript('יִשָּׂשכָר זְבוּלֻן וּבְנְיָמִן׃')).toBe('jissaschar zᵊwuulun uwnjamin.')
+    expect(transcript('רְאוּבֵן שִׁמְעוֹן לֵוִי וִיהוּדָה׃')).toBe('rᵊuwen szimon lewi wihuda.')
+    expect(transcript('יִשָּׂשכָר זְבוּלֻן וּבְנְיָמִן׃')).toBe('jissaschar zᵊwulun uwnjamin.')
     expect(transcript('דָּן וְנַפְתָּלִי גָּד וְאָשֵׁר׃')).toBe('dan wᵊnafttali gad wᵊaszer.')
 
     // expect(transcript('לִשְׁלֹל שָׁלָל וְלָבֹז בַּז לְהָשִׁיב יָדְךָ עַל־חֳרָבוֹת נוֹשָׁבֹת וְאֶל־עַם מְאֻסָּף מִגּוֹיִם עֹשֶׂה מִקְנֶה וְקִנְיָן יֹשְׁבֵי עַל־טַבּוּר הָאָרֶץ')).toBe('lִsְׁlֹl sָׁlָl wְlָwֹz wַּz lְhָsִׁjw jָdְchָ -ַl־chֳrָwwֹt nwֹsָׁwֹt wְ-ֶl־-ַm mְ-ֻsָּf mִgּwֹjִm -ֹsֶׂh mִkְnֶh wְkִnְjָn jֹsְׁwֵj -ַl־tַwּwּr hָ-ָrֶc')
@@ -129,6 +133,6 @@ describe('transcript', () => {
   })
 
   test('simple', () => {
-    // expect(transcript('הַבָּאִים')).toBe('habbaim') // przybyli - imiesłów czynny (przybywający)
+    // expect(transcript('יַעֲקֹב')).toBe('jaakow')
   })
 })

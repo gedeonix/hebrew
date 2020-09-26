@@ -170,9 +170,18 @@ export function transcript(str) {
     // console.log(i, index, '['+text+']', meta, text[index+1])
 
     // 1) podwojenie środkowych samogłosek przez dagesz
-    if (meta.dagesz === true && meta.first === false && meta.last === false) {
-      // TODO sprawdzić, czy wczesniej jest długa lub krótka samogłoska, ale nie szewa
-      value = value + value //podwojenie
+    if(meta.dagesz === true) {
+
+      let a = text[index]
+
+      // pomijamy, gdy waw
+      if( a!== '\u05d5') {
+
+        if (meta.first === false && meta.last === false) {
+          // TODO sprawdzić, czy wczesniej jest długa lub krótka samogłoska, ale nie szewa
+          value = value + value //podwojenie
+        }
+      }
     }
 
     // 2) nieme he na końcu
