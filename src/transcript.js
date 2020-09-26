@@ -48,6 +48,7 @@ const code = {
   '\u05d9\u05b4': 'ji', // jud + chirk = ji
 
   // waw
+  '\u05d5\u05bc': 'u', // waw + dagesz (mapik) = u
   '\u05d5\u05b9': 'o', // waw + cholam = o
 
   '\u05b6\u05d4': 'e', // segol + he = któtkie e
@@ -125,8 +126,9 @@ const code = {
       */
 }
 
+const END = '׃'
 const SPACE = ' '
-const DAGESH = '\u05bc'
+const DAGESH = 'ּ'
 
 export function transcript(str) {
   const re = new RegExp(Object.keys(code).join('|'), 'gi')
@@ -135,21 +137,21 @@ export function transcript(str) {
     let value = code[i]
     let meta = {
       first: index === 0 || text[index-1] === SPACE,
-      last: index === text.length - 1 || text[index+1] === SPACE,
+      last: index === text.length - 1 || (text[index+i.length] === SPACE || text[index+i.length] === END),
       key: i,
       size: i.length,
       value: value,
       dagesz: i.length === 2 && i[1] === DAGESH
     }
-    console.log(i, index, '['+text+']', meta)
+    // console.log(i, index, '['+text+']', meta, text[index+1])
 
     // 1) podwojenie przez dagesz
-    if(meta.dagesz === true && meta.first === false) {
+    if(meta.dagesz === true && meta.first === false && meta.last === false) {
       value = value + value //podwojenie
     }
 
     // 2) he na końcu
-    if(meta.first === false && meta.last === true && i === 'ה') {
+    if(i === 'ה' && meta.first === false && meta.last === true) {
       return ''
     }
 

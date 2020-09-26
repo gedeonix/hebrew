@@ -52,8 +52,12 @@ describe('transcript', () => {
     expect(transcript('איִ')).toBe('ji')
     expect(transcript('אֱ')).toBe('e')
     expect(transcript('לֹ')).toBe('lo')
-    expect(transcript('וְ')).toBe('wᵊ') // spójnik i oraz
-    expect(transcript('וֹ')).toBe('o') // waw + cholam = o
+
+    //waw
+    expect(transcript('וְ')).toBe('wᵊ') // waw + szewa = we - oznacza spójnik i, oraz
+    expect(transcript('וֹ')).toBe('o') // waw + cholam = o - na końcu (zaimek dzierżawczy jego)
+    expect(transcript('וּ')).toBe('u') // waw + dagesz = u - na początku oznacza spójnik i
+
     expect(transcript('ֶה')).toBe('e') // segol + he = e
     expect(transcript( 'ֵי')).toBe('e') // cere + jud = e
 
@@ -96,7 +100,7 @@ describe('transcript', () => {
 
   test('verses', () => {
     expect(transcript('בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָרֶץ׃')).toBe('bᵊreszit bara elohim et haszszamajim wᵊet haarec.')
-    expect(transcript('וְאֵלֶּה שְׁמוֹת בְּנֵי יִשְׂרָאֵל הַבָּאִים מִצְרָיְמָה אֵת יַעֲקֹב אִישׁ וּבֵיתוֹ בָּאוּ׃')).toBe('wᵊelle szᵊmot bᵊne jisᵊrael habbaim micᵊrajᵊma et jaakow isz w?weto baw?.')
+    expect(transcript('וְאֵלֶּה שְׁמוֹת בְּנֵי יִשְׂרָאֵל הַבָּאִים מִצְרָיְמָה אֵת יַעֲקֹב אִישׁ וּבֵיתוֹ בָּאוּ׃')).toBe('wᵊelle szᵊmot bᵊne jisᵊrael habbaim micᵊrajᵊma et jaakow isz uweto bau.')
 
     // expect(transcript('לִשְׁלֹל שָׁלָל וְלָבֹז בַּז לְהָשִׁיב יָדְךָ עַל־חֳרָבוֹת נוֹשָׁבֹת וְאֶל־עַם מְאֻסָּף מִגּוֹיִם עֹשֶׂה מִקְנֶה וְקִנְיָן יֹשְׁבֵי עַל־טַבּוּר הָאָרֶץ')).toBe('lִsְׁlֹl sָׁlָl wְlָwֹz wַּz lְhָsִׁjw jָdְchָ -ַl־chֳrָwwֹt nwֹsָׁwֹt wְ-ֶl־-ַm mְ-ֻsָּf mִgּwֹjִm -ֹsֶׂh mִkְnֶh wְkִnְjָn jֹsְׁwֵj -ַl־tַwּwּr hָ-ָrֶc')
     // expect(transcript('לשלל שלל ולבז בז להשיב ידך על חרבות נושבת ואל עם מאסף מגוים עשה מקנה וקנין ישבי על טבור הארץ')).toBe('lsll sll wlwz wz lhsjw jdch -l chrwwt nwswt w-l -m m-sf mgwjm -sh mknh wknjn jswj -l twwr h-rc')
@@ -119,6 +123,8 @@ describe('transcript', () => {
 
   test('simple', () => {
     // expect(transcript('הַבָּאִים')).toBe('habbaim') // przybyli - imiesłów czynny (przybywający)
-    expect(transcript('מִצְרָיְמָה')).toBe('micᵊrajᵊma')
+    // expect(transcript('מִצְרָיְמָה')).toBe('micᵊrajᵊma')
+    // expect(transcript('וּבֵיתוֹ')).toBe('uweto')
+    expect(transcript('בָּאוּ׃')).toBe('bau.')
   })
 })
