@@ -41,9 +41,16 @@ const code = {
   '\u05b2': 'a', //patah
   '\u05b3': '?', //qamats
 
+  // jud
   '\u05b4\u05d9': 'i', // chirk + jud = i
+  '\u05b5\u05d9': 'e', // cere + jud = e
+
   '\u05d9\u05b4': 'ji', // jud + chirk = ji
 
+  // waw
+  '\u05d5\u05b9': 'o', // waw + cholam = o
+
+  '\u05b6\u05d4': 'e', // segol + he = któtkie e
   '\u05b4': 'i', // chirik = i
   '\u05b5': 'e', // cere = długie e
   '\u05b6': 'e', // segol = któtkie e
@@ -82,13 +89,14 @@ const code = {
   כּ: 'k', // kaf
   כ: 'ch', //chaf
   ך: 'ch',
+  'לּ': 'l', // lamed
   ל: 'l', // lamed
   מ: 'm', // mem
   ם: 'm',
   נ: 'n', // nun
   ן: 'n',
   ס: 's', // samech
-  ע: '-', // ajin
+  ע: '', // ajin
   פּ: 'p', // pe
   פ: 'f', // fe
   ף: 'f',
@@ -117,14 +125,33 @@ const code = {
       */
 }
 
+const SPACE = ' '
+const DAGESH = '\u05bc'
+
 export function transcript(str) {
   const re = new RegExp(Object.keys(code).join('|'), 'gi')
 
   return str.replace(re, (i, index, text) => {
-    let last = index === text.length - 1
     let value = code[i]
+    let meta = {
+      first: index === 0 || text[index-1] === SPACE,
+      last: index === text.length - 1 || text[index+1] === SPACE,
+      key: i,
+      size: i.length,
+      value: value,
+      dagesz: i.length === 2 && i[1] === DAGESH
+    }
+    console.log(i, index, '['+text+']', meta)
 
-    // console.log(i, index, '['+text+']', value, last)
+    // 1) podwojenie przez dagesz
+    if(meta.dagesz === true && meta.first === false) {
+      value = value + value //podwojenie
+    }
+
+    // 2) he na końcu
+    if(meta.first === false && meta.last === true && i === 'ה') {
+      return ''
+    }
 
     if (value === '') return value
     return value || i

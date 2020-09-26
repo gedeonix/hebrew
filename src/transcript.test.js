@@ -24,7 +24,7 @@ describe('transcript', () => {
     expect(transcript('נ')).toBe('n') // nun
     expect(transcript('ן')).toBe('n') // nun
     expect(transcript('ס')).toBe('s') // samech
-    expect(transcript('ע')).toBe('-') // ajin
+    expect(transcript('ע')).toBe('') // ajin
     expect(transcript('פּ')).toBe('p') // pe
     expect(transcript('פ')).toBe('f') // fe
     expect(transcript('ף')).toBe('f') // fe
@@ -53,6 +53,9 @@ describe('transcript', () => {
     expect(transcript('אֱ')).toBe('e')
     expect(transcript('לֹ')).toBe('lo')
     expect(transcript('וְ')).toBe('wᵊ') // spójnik i oraz
+    expect(transcript('וֹ')).toBe('o') // waw + cholam = o
+    expect(transcript('ֶה')).toBe('e') // segol + he = e
+    expect(transcript( 'ֵי')).toBe('e') // cere + jud = e
 
     expect(transcript('ֹהִ')).toBe('ohi') // he pomiędzy samogłoskami
     expect(transcript('האאא')).toBe('h') // he na początku (przedimek określony)
@@ -79,6 +82,7 @@ describe('transcript', () => {
     // expect(transcript('שִׁי')).toBe('szi')
 
     expect(transcript('בְּרֵאשִׁית')).toBe('bᵊreszit')
+    expect(transcript('שְׁמוֹת')).toBe('szᵊmot')
   })
 
   test('patah furtivum', () => {
@@ -87,9 +91,13 @@ describe('transcript', () => {
 
   test('function', () => {
       expect(transcript('אֵת')).toBe('et') // po tym wyrazie będzie dopełnienie w bierniku (kogo? co?)
+      expect(transcript('אֵת יַעֲקֹב')).toBe('et jaakow') // et - bliskość z wyrazem po - przyimek z, razem (z kimś, z czymś)
   })
 
   test('verses', () => {
+    expect(transcript('בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָרֶץ׃')).toBe('bᵊreszit bara elohim et haszszamajim wᵊet haarec.')
+    expect(transcript('וְאֵלֶּה שְׁמוֹת בְּנֵי יִשְׂרָאֵל הַבָּאִים מִצְרָיְמָה אֵת יַעֲקֹב אִישׁ וּבֵיתוֹ בָּאוּ׃')).toBe('wᵊelle szᵊmot bᵊne jisᵊrael habbaim micᵊrajᵊma et jaakow isz w?weto baw?.')
+
     // expect(transcript('לִשְׁלֹל שָׁלָל וְלָבֹז בַּז לְהָשִׁיב יָדְךָ עַל־חֳרָבוֹת נוֹשָׁבֹת וְאֶל־עַם מְאֻסָּף מִגּוֹיִם עֹשֶׂה מִקְנֶה וְקִנְיָן יֹשְׁבֵי עַל־טַבּוּר הָאָרֶץ')).toBe('lִsְׁlֹl sָׁlָl wְlָwֹz wַּz lְhָsִׁjw jָdְchָ -ַl־chֳrָwwֹt nwֹsָׁwֹt wְ-ֶl־-ַm mְ-ֻsָּf mִgּwֹjִm -ֹsֶׂh mִkְnֶh wְkִnְjָn jֹsְׁwֵj -ַl־tַwּwּr hָ-ָrֶc')
     // expect(transcript('לשלל שלל ולבז בז להשיב ידך על חרבות נושבת ואל עם מאסף מגוים עשה מקנה וקנין ישבי על טבור הארץ')).toBe('lsll sll wlwz wz lhsjw jdch -l chrwwt nwswt w-l -m m-sf mgwjm -sh mknh wknjn jswj -l twwr h-rc')
     // Ez 38:12
@@ -109,7 +117,8 @@ describe('transcript', () => {
     // expect(transcript('לִלְלל')).toBe('lִlְll')
   })
 
-  test('simple dictionary', () => {
-    //TODO
+  test('simple', () => {
+    // expect(transcript('הַבָּאִים')).toBe('habbaim') // przybyli - imiesłów czynny (przybywający)
+    expect(transcript('מִצְרָיְמָה')).toBe('micᵊrajᵊma')
   })
 })
