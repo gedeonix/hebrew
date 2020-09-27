@@ -83,6 +83,12 @@ body {
   font-size: 0.8rem;
 }
 
+.key_info {
+    border-top: #606060 1px solid;
+    padding-top: 4px;
+    font-size: 0.8rem;
+}
+
 .key_space {
   display: inline-block;
   width: 3rem;
