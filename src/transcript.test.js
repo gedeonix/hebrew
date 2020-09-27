@@ -134,6 +134,31 @@ describe('transcript', () => {
     // expect(transcript('לִלְלל')).toBe('lִlְll')
   })
 
+  test('syllabe', () => {
+
+    // sylaba zaczyna się od spółgłoski (wyjątkiem jest szuruk (waw + dagesz = u) na początku)
+
+    // spółgłoska + samogłoska
+    expect(transcript('מָ')).toBe('ma')
+    expect(transcript('מִי')).toBe('mi')
+    expect(transcript('מֶה')).toBe('me')
+
+    // spółgłoska + spółgłoska + samogłoska
+    expect(transcript('בְּרִי')).toBe('bᵊri')  // przy podziale na sylaby nie bierzemy pod uwagę szewy
+
+    // spółgłoska + samogłoska + spółgłoska
+    expect(transcript('לֵב')).toBe('lew')
+    expect(transcript('מִשְׁ|פָּט')).toBe('misz|pat')
+
+    // spółgłoska + spółgłoska + samogłoska + spółgłoska
+    expect(transcript('שְׁמוֹת')).toBe('szᵊmot')
+    expect(transcript('קְטֹל')).toBe('kᵊtol')
+
+    // spółgłoska + samogłoska + spółgłoska + spółgłoska
+    expect(transcript('יֵשְׁתְּ')).toBe('jesztᵊ')
+
+  })
+
   test('simple', () => {
     // expect(transcript('יַעֲקֹב')).toBe('jaakow')
   })

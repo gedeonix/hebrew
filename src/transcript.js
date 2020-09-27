@@ -157,6 +157,7 @@ function isDoubleLetterDagesh(text, index) {
   let letter = text[index]
   if(letter === 'ו') return false // pomijamy, gdy waw
   if(letter === 'ת') return false // pomijamy, gdy taw
+  if(letter === 'פ') return false // pomijamy, gdy pe
   return true
 }
 
