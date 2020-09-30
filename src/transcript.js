@@ -13,6 +13,7 @@ const code = {
       '֚': '?',
       '֛': '?',
       '֜': '?',
+
       '֝': '?',
       '֞': '?',
       '֟': '?',
@@ -61,9 +62,9 @@ const code = {
   '\u05b9': 'o', // cholam
   '\u05ba': '?',
   '\u05bb': 'u', // kubuc
-  '\u05bc': '?', // dagesz
+  'ּ': '?', // dagesz
   '\u05bd': '?',
-  '\u05be': '?',
+  '\u05be': '\u05be',
   '\u05bf': '?',
   '\u05c0': '?',
   '\u05c1': '?',
@@ -93,6 +94,7 @@ const code = {
   ך: 'ch',
   'לּ': 'l', // lamed
   ל: 'l', // lamed
+  'מּ': 'm', // mem
   מ: 'm', // mem
   ם: 'm',
   נ: 'n', // nun
@@ -159,6 +161,17 @@ function isDoubleLetterDagesh(text, index) {
   if(letter === 'ת') return false // pomijamy, gdy taw
   if(letter === 'פ') return false // pomijamy, gdy pe
   return true
+}
+
+/**
+ * bezdzwięczne spółgłoski
+ */
+function isVoicelessConsonant(char) {
+  if(char === 'א') return false // alef
+  if(char === 'ה') return false // he
+  if(char === 'ו') return false // waw (gdy traci swoje brzmienie - szuruk oraz cholam)
+  if(char === 'י') return false // jud (gdy traci swoje brzmienie - długie chirik i długie cere)
+  return false
 }
 
 export function transcript(str) {

@@ -109,6 +109,7 @@ describe('transcript', () => {
 
   test('verses', () => {
     expect(transcript('בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָרֶץ׃')).toBe('bᵊreszit bara elohim et haszszamajim wᵊet haarec.')
+    expect(transcript('וְהָאָרֶץ הָיְתָה תֹהוּ וָבֹהוּ וְחֹשֶׁךְ עַל־פְּנֵי תְהוֹם וְרוּחַ אֱלֹהִים מְרַחֶפֶת עַל־פְּנֵי הַמָּיִם׃')).toBe('wᵊhaarec hajta tohu wawohu wᵊchoszechᵊ al־pne tᵊhom wᵊrucha elohim mᵊrachefet al־pne hammajim.')
 
     expect(transcript('וְאֵלֶּה שְׁמוֹת בְּנֵי יִשְׂרָאֵל הַבָּאִים מִצְרָיְמָה אֵת יַעֲקֹב אִישׁ וּבֵיתוֹ בָּאוּ׃')).toBe('wᵊelle szᵊmot bᵊne jisrael habbaim micrajma et jaakow isz uweto bau.')
     expect(transcript('רְאוּבֵן שִׁמְעוֹן לֵוִי וִיהוּדָה׃')).toBe('rᵊuwen szimon lewi wihuda.')
@@ -157,6 +158,32 @@ describe('transcript', () => {
     // spółgłoska + samogłoska + spółgłoska + spółgłoska
     expect(transcript('יֵשְׁתְּ')).toBe('jesztᵊ')
 
+    // sylaba otwarta
+    // - kończy się na samogłoskę lub bezdzwięczną spółgłoskę
+    // - na ogół posiada samogłoskę długą (cere, kamac)
+    // - może być samogłoska krótkam jeśli sylaba jest akcentowana (np. segol, patach)
+
+    expect(transcript('בָּ')).toBe('ba')
+    expect(transcript('בֵּ')).toBe('be')
+
+    // sylaba zamknięta
+    // - kończy się na dzwięczną spółgłoskę // mem, taw, cadi
+    // - na ogół samogłoska krótka (segol, patach,...)
+    // - może być samogłoska długa jeśli sylaba jest akcentowana (np. segol, patach)
+    // - samogłoska w nieakcentowanej musi być krótka
+
+    // TODO
+
+  })
+
+  test('dzwięczna szewa (wymawiana)', () => {
+    // występuje pod pierwszą z dwóch spółgłosek rozpoczynających sylabę
+    // TODO
+  })
+
+  test('bezdzwięczna szewa (nie wymawiana)', () => {
+    // występuje pod spółgłoską kończącą zamkniętą sylabę
+    // TODO
   })
 
   test('simple', () => {
