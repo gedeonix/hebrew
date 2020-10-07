@@ -52,6 +52,12 @@
 - http://unicode.org/charts/PDF/U0590.pdf
 - Alphabetic Presentation Forms - http://unicode.org/charts/PDF/UFB00.pdf
 
+- http://www.unicode.org/versions/Unicode13.0.0/UnicodeStandard-13.0.pdf
+- CGJ - http://en.wikipedia.org/wiki/Combining_Grapheme_Joiner
+
 ### Transcript (pl)
 
 - Transliteracja i transkrypcja alfabetu hebrajskiego - https://rbl.ptt.net.pl/index.php/RBL/article/view/480/510
+
+### SBL Font
+- manual https://www.sbl-site.org/Fonts/SBLHebrewManualv1.5.pdf
