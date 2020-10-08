@@ -19,6 +19,8 @@
     <div id="demo2"></div>
     <div id="demo3"></div>
     <div id="demo4"></div>
+    <div id="demo5"></div>
+    <hr>
 </div>
 </div>
 <script src="https://d3js.org/d3.v6.min.js"></script>
@@ -32,33 +34,66 @@
           {
             title: 'Genesis 1:1',
             items: [
-              { word: 'בָּרָא', type: 'SUBJECT' },
-              { word: 'אֱלֹהִים', type: 'VERB' }
+              { name: 'בָּרָא', type: 'SUBJECT' },
+              { name: 'אֱלֹהִים', type: 'VERB' }
             ]
           },
           {
-            title: 'Diagram A',
+            title: 'Diagram A (base line)',
             items: [
-              { word: 'subject', type: 'SUBJECT' },
-              { word: 'verb', type: 'VERB' }
+              { name: 'subject', type: 'SUBJECT' },
+              { name: 'verb', type: 'VERB' }
             ]
           },
           {
             title: 'Diagram B',
             items: [
-              { word: 'subject', type: 'SUBJECT' },
-              { word: 'verb', type: 'VERB' },
-              { word: 'direct object', type: 'DIRECT_OBJECT' },
+              { name: 'subject', type: 'SUBJECT' },
+              { name: 'verb', type: 'VERB' },
+              { name: 'direct object', type: 'DIRECT_OBJECT' },
             ]
           },
           {
             title: 'Diagram C',
             items: [
-              { word: 'subject', type: 'SUBJECT' },
-              { word: 'linking verb', type: 'VERB' },
-              { word: 'predicate adj.', type: 'PREDICATE_ADJ' },
+              { name: 'subject', type: 'SUBJECT' },
+              { name: 'linking verb', type: 'VERB' },
+              { name: 'predicate adj.', type: 'PREDICATE_ADJ' },
+            ]
+          },
+          {
+            title: 'Diagram D (modifiers)',
+            items: [
+              {
+                name: 'subject',
+                type: 'SUBJECT',
+                modifiers: [
+                  { name: 'modA', type: '...' },
+                  { name: 'modB', type: '...' },
+                  { name: 'modC', type: '...' }
+                ]
+              },
+              {
+                name: 'linking verb',
+                type: 'VERB',
+                modifiers: [
+                  { name: 'modD', type: '...' },
+                  { name: 'modE', type: '...' },
+                  { name: 'modF', type: '...' }
+                ]
+              },
+              {
+                name: 'predicate adj.',
+                type: 'DIRECT_OBJECT',
+                modifiers: [
+                  { name: 'modG', type: '...' },
+                  { name: 'modH', type: '...' },
+                  { name: 'modI', type: '...' }
+                ]
+              },
             ]
           }
+
         ]
       }
     },
@@ -67,6 +102,7 @@
       diagram(d3, '#demo2', this.data[1]);
       diagram(d3, '#demo3', this.data[2]);
       diagram(d3, '#demo4', this.data[3]);
+      diagram(d3, '#demo5', this.data[4]);
     }
   }).mount('#app')
 </script>

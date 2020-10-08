@@ -4,9 +4,14 @@ export const type = {
   DIRECT_OBJECT: 'DIRECT_OBJECT',
   PREDICATE_ADJ: 'PREDICATE_ADJ'
 }
-const X2_OFFSET = 20
+const X2_OFFSET = 30
 const X_OFFSET = 40
 const Y_OFFSET = 60
+const Y2_OFFSET = 30
+
+const MARGIN = 60
+const FONT_OFFSET = 16
+
 /*
 export const type = {
   ADJ: 'adjective',
@@ -29,6 +34,15 @@ export const type = {
 }
 */
 
+function drawTitle(parent, title) {
+  const text = parent.append("text")
+    //.attr("text-anchor", "start")
+    .attr("x", 0)
+    .attr("y", 0)
+    .style('font-size', '2em')
+    .text(title)
+}
+
 function drawDot(parent, x, y) {
   parent.append("circle")
     .attr("cx", x)
@@ -46,9 +60,6 @@ function drawPath(svg, d) {
 
 function drawClause(parent, x, y, name, type) {
   const g = parent.append('g')
-
-  const MARGIN = 40
-  const FONT_OFFSET = 16
 
   const text = g.append("text")
     .attr("text-anchor", "start")
@@ -94,7 +105,7 @@ function drawDivideLineSubject(parent, x, y) {
     .attr("x1", x)
     .attr("y1", y - Y_OFFSET)
     .attr("x2", x)
-    .attr("y2", y + Y_OFFSET)
+    .attr("y2", y + Y2_OFFSET)
     .style("stroke", "black")
     .style("stroke-width", 3)
 }
@@ -110,7 +121,6 @@ function drawDivideLinePredicateAdj(parent, x, y) {
 }
 
 function drawDivideLineDefault(parent, x, y) {
-  const OFFSET = 40
   parent.append("line")
     .attr("x1", x)
     .attr("y1", y - Y_OFFSET)
@@ -120,21 +130,35 @@ function drawDivideLineDefault(parent, x, y) {
     .style("stroke-width", 3)
 }
 
-function drawTitle(parent, title) {
-  const text = parent.append("text")
-    //.attr("text-anchor", "start")
-    .attr("x", 0)
-    .attr("y", 0)
-    .style('font-size', '2em')
-    .text(title)
+function drawVerticalLine(parent, x, y) {
+  let y2 = y + Y_OFFSET + Y2_OFFSET
+  parent.append("line")
+    .attr("x1", x)
+    .attr("y1", y)
+    .attr("x2", x)
+    .attr("y2", y2)
+    .style("stroke", "black")
+    .style("stroke-width", 3)
+  return {
+    x: x,
+    y: y2
+  }
+}
+
+function drawModifer(parent, x, y, item) {
+  let pos = drawVerticalLine(parent, x, y)
+  return drawClause(parent, pos.x, pos.y, item.name, item.type)
 }
 
 function drawItems(parent, x, y, items) {
   let offset = x
   items.forEach((item, index, array ) => {
-    let box = drawClause(parent, offset, y, item.word, item.type)
+    let box = drawClause(parent, offset, y, item.name, item.type)
     offset = offset + box.width
+
+    // draw divide line
     if (index !== (array.length -1)) {
+
       if(item.type === 'SUBJECT') {
         drawDivideLineSubject(parent, offset, y)
       }
@@ -147,6 +171,18 @@ function drawItems(parent, x, y, items) {
           drawDivideLineDefault(parent, offset, y)
         }
       }
+
+    }
+
+    // draw modifiers
+    if(item.modifiers !== undefined) {
+
+      let x = box.x + X2_OFFSET
+      let y = box.y + Y_OFFSET
+      item.modifiers.forEach(modifier => {
+        let box2 = drawModifer(parent, x, y, modifier)
+        y = y + Y_OFFSET + Y2_OFFSET
+      })
     }
   })
 }
@@ -434,7 +470,7 @@ export function diagram(d3, node, data) {
 
   let margin = { top: 50, right: 5, bottom: 5, left: 5 }
   let width = 1000 - margin.left - margin.right
-  let height = 300 - margin.top - margin.bottom
+  let height = 500 - margin.top - margin.bottom
 
   const parent = d3
     .select(node)
