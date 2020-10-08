@@ -151,24 +151,24 @@ function drawModifer(parent, x, y, item) {
 }
 
 function drawItems(parent, x, y, items) {
-  let offset = x
+  let x_offset = x
   items.forEach((item, index, array ) => {
-    let box = drawClause(parent, offset, y, item.name, item.type)
-    offset = offset + box.width
+    let box = drawClause(parent, x_offset, y, item.name, item.type)
+    x_offset = x_offset + box.width
 
     // draw divide line
     if (index !== (array.length -1)) {
 
       if(item.type === 'SUBJECT') {
-        drawDivideLineSubject(parent, offset, y)
+        drawDivideLineSubject(parent, x_offset, y)
       }
       else {
         let next = array[index + 1]
         if(next.type === 'PREDICATE_ADJ') {
-          drawDivideLinePredicateAdj(parent, offset, y)
+          drawDivideLinePredicateAdj(parent, x_offset, y)
         }
         else {
-          drawDivideLineDefault(parent, offset, y)
+          drawDivideLineDefault(parent, x_offset, y)
         }
       }
 
@@ -185,6 +185,13 @@ function drawItems(parent, x, y, items) {
       })
     }
   })
+
+  // size
+  return {
+    x: 100,
+    y: 200
+  }
+
 }
 
 function demo(svg) {
@@ -472,12 +479,13 @@ export function diagram(d3, node, data) {
   let width = 1000 - margin.left - margin.right
   let height = 500 - margin.top - margin.bottom
 
-  const parent = d3
-    .select(node)
-    .append('svg')
+  const g1 = d3.select(node)
+  const g2 = g1.append('svg')
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
-    .append("g")
+
+  const parent = g2.append("g")
+    .attr('abc', '123')
     .attr("transform",
     "translate(" + margin.left + "," + margin.top + ")")
 
@@ -485,8 +493,15 @@ export function diagram(d3, node, data) {
   //let g2 = drawClause(svg, g1.x + g1.width, y, 'verb', 'VERB')
 
   drawTitle(parent, data.title)
-  drawItems(parent, 0, 100, data.items)
+  let size = drawItems(parent, 0, 100, data.items)
 
+  // console.log(size)
+  // console.log(g1.node().getBBox());
+  let box = g2.node().getBBox()
+  // console.log(box);
+
+  g2.attr('height', box.height + 60)
+  g2.attr('width', box.width)
   // demo(svg)
 }
 
