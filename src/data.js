@@ -7,21 +7,3 @@ export const data = [
   { lema: 'ziemię', pos: '' },
   { lema: '.', pos: '' }
 ]
-
-export const diagrams = {
-  demo1: {
-    title: 'Diagram A',
-    items: [
-      { word: 'subject', type: 'subject' },
-      { word: 'verb', type: 'verb' }
-    ]
-  },
-  demo2: {
-    title: 'Diagram B',
-    items: [
-      { word: 'subject', type: 'subject' },
-      { word: 'verb', type: 'verb' },
-      { word: 'direct object', type: 'direct object' },
-    ]
-  }
-}

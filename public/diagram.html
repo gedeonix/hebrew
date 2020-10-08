@@ -13,27 +13,60 @@
 <div id="app">
   <div class="container">
     <h1>Diagram Sequences</h1>
+    <div id="demo1" class="hebrew"></div>
     <hr>
-    <div id="demo1"></div>
-    <hr>
+    <h2>Clauses</h2>
     <div id="demo2"></div>
-  </div>
+    <div id="demo3"></div>
+    <div id="demo4"></div>
 </div>
 </div>
 <script src="https://d3js.org/d3.v6.min.js"></script>
 <script defer src="https://unpkg.com/vue@next"></script>
 <script type="module">
-  import { diagram } from '../src/diagram.js'
-  import { diagrams } from '../src/data.js'
+  import { diagram, type } from '../src/diagram.js'
   Vue.createApp({
     data() {
       return {
-        data: diagrams,
+        data: [
+          {
+            title: 'Genesis 1:1',
+            items: [
+              { word: 'בָּרָא', type: 'SUBJECT' },
+              { word: 'אֱלֹהִים', type: 'VERB' }
+            ]
+          },
+          {
+            title: 'Diagram A',
+            items: [
+              { word: 'subject', type: 'SUBJECT' },
+              { word: 'verb', type: 'VERB' }
+            ]
+          },
+          {
+            title: 'Diagram B',
+            items: [
+              { word: 'subject', type: 'SUBJECT' },
+              { word: 'verb', type: 'VERB' },
+              { word: 'direct object', type: 'DIRECT_OBJECT' },
+            ]
+          },
+          {
+            title: 'Diagram C',
+            items: [
+              { word: 'subject', type: 'SUBJECT' },
+              { word: 'linking verb', type: 'VERB' },
+              { word: 'predicate adj.', type: 'PREDICATE_ADJ' },
+            ]
+          }
+        ]
       }
     },
     mounted() {
-      diagram(d3, '#demo1', this.data.demo1);
-      diagram(d3, '#demo2', this.data.demo2);
+      diagram(d3, '#demo1', this.data[0]);
+      diagram(d3, '#demo2', this.data[1]);
+      diagram(d3, '#demo3', this.data[2]);
+      diagram(d3, '#demo4', this.data[3]);
     }
   }).mount('#app')
 </script>

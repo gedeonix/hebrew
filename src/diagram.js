@@ -1,3 +1,33 @@
+export const type = {
+  SUBJECT: 'SUBJECT',
+  VERB: 'VERB',
+  DIRECT_OBJECT: 'DIRECT_OBJECT',
+  PREDICATE_ADJ: 'PREDICATE_ADJ'
+}
+const X2_OFFSET = 20
+const X_OFFSET = 40
+const Y_OFFSET = 60
+/*
+export const type = {
+  ADJ: 'adjective',
+  ADP: 'adposition',
+  ADV: 'adverb',
+  AUX: 'auxiliary',
+  CCONJ: 'coordinating conjunction',
+  DET: 'determiner',
+  INTJ: 'interjection',
+  NOUN: 'noun',
+  NUM: 'numeral',
+  PART: 'particle',
+  PRON: 'pronoun',
+  PROPN: 'proper noun',
+  PUNCT: 'punctuation',
+  SCONJ: 'subordinating conjunction',
+  SYM: 'symbol',
+  VERB: 'verb',
+  X: 'other'
+}
+*/
 
 function drawDot(parent, x, y) {
   parent.append("circle")
@@ -18,7 +48,7 @@ function drawClause(parent, x, y, name, type) {
   const g = parent.append('g')
 
   const MARGIN = 40
-  const FONT_OFFSET = 12
+  const FONT_OFFSET = 16
 
   const text = g.append("text")
     .attr("text-anchor", "start")
@@ -28,7 +58,7 @@ function drawClause(parent, x, y, name, type) {
     //.attr("dy", ".35em")
     //.attr("text-anchor", "middle")
     //.style("font", "300 128px Helvetica Neue")
-    .style('font-size', '2em')
+    .style('font-size', '3em')
     .text(name)
 
   var bbox = text.node().getBBox();
@@ -59,20 +89,40 @@ function drawClause(parent, x, y, name, type) {
   return g.node().getBBox()
 }
 
-function drawDivideLine(parent, x, y) {
+function drawDivideLineSubject(parent, x, y) {
+  parent.append("line")
+    .attr("x1", x)
+    .attr("y1", y - Y_OFFSET)
+    .attr("x2", x)
+    .attr("y2", y + Y_OFFSET)
+    .style("stroke", "black")
+    .style("stroke-width", 3)
+}
+
+function drawDivideLinePredicateAdj(parent, x, y) {
+  parent.append("line")
+    .attr("x1", x - X2_OFFSET)
+    .attr("y1", y - Y_OFFSET)
+    .attr("x2", x)
+    .attr("y2", y)
+    .style("stroke", "black")
+    .style("stroke-width", 3)
+}
+
+function drawDivideLineDefault(parent, x, y) {
   const OFFSET = 40
   parent.append("line")
     .attr("x1", x)
-    .attr("y1", y - OFFSET)
+    .attr("y1", y - Y_OFFSET)
     .attr("x2", x)
-    .attr("y2", y + OFFSET)
+    .attr("y2", y)
     .style("stroke", "black")
     .style("stroke-width", 3)
 }
 
 function drawTitle(parent, title) {
   const text = parent.append("text")
-    .attr("text-anchor", "start")
+    //.attr("text-anchor", "start")
     .attr("x", 0)
     .attr("y", 0)
     .style('font-size', '2em')
@@ -81,10 +131,23 @@ function drawTitle(parent, title) {
 
 function drawItems(parent, x, y, items) {
   let offset = x
-  items.forEach(item => {
-    let box = drawClause(parent, offset, y, item.word, 'item.type')
+  items.forEach((item, index, array ) => {
+    let box = drawClause(parent, offset, y, item.word, item.type)
     offset = offset + box.width
-    drawDivideLine(parent, offset, y)
+    if (index !== (array.length -1)) {
+      if(item.type === 'SUBJECT') {
+        drawDivideLineSubject(parent, offset, y)
+      }
+      else {
+        let next = array[index + 1]
+        if(next.type === 'PREDICATE_ADJ') {
+          drawDivideLinePredicateAdj(parent, offset, y)
+        }
+        else {
+          drawDivideLineDefault(parent, offset, y)
+        }
+      }
+    }
   })
 }
 
@@ -370,7 +433,7 @@ var lineGraph = svg.append("path")
 export function diagram(d3, node, data) {
 
   let margin = { top: 50, right: 5, bottom: 5, left: 5 }
-  let width = 800 - margin.left - margin.right
+  let width = 1000 - margin.left - margin.right
   let height = 300 - margin.top - margin.bottom
 
   const parent = d3
@@ -382,14 +445,11 @@ export function diagram(d3, node, data) {
     .attr("transform",
     "translate(" + margin.left + "," + margin.top + ")")
 
-  let x = 100
-  let y = 100
-
   //let g1 = drawClause(svg, x, y, 'subject', 'SUBJECT')
   //let g2 = drawClause(svg, g1.x + g1.width, y, 'verb', 'VERB')
 
   drawTitle(parent, data.title)
-  drawItems(parent, 100, 100, data.items)
+  drawItems(parent, 0, 100, data.items)
 
   // demo(svg)
 }
