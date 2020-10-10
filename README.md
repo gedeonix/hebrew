@@ -1,5 +1,12 @@
 # Gedeonix Hebrew Lib (transcription of Hebrew into Polish)
 
+Library of simple tools to support work on text in Hebrew (very early alpha)
+
+## Demo
+ Simple demo in ./public/keyboard.html file.
+
+ ![demo screen](./public/images/demo.png)
+ 
 ## Test examples
 
 ### Tanah תנ״ך
@@ -60,4 +67,14 @@
 - Transliteracja i transkrypcja alfabetu hebrajskiego - https://rbl.ptt.net.pl/index.php/RBL/article/view/480/510
 
 ### SBL Font
+
+### SBL Fonts
+Fonts are not a direct part of the library, they were used only for the demo code.
+
+The project (non-profit) uses fonts from www.sbl-site.org
+under license
+> Fonts SBL fonts are made available without cost to individual scholars for non-profit use.
+>
+> www.sbl-site.org/educational/biblicalfonts.aspx
+
 - manual https://www.sbl-site.org/Fonts/SBLHebrewManualv1.5.pdf

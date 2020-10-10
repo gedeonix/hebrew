@@ -1,6 +1,6 @@
 {
   "name": "@gedeonix/hebrew",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -12,9 +12,6 @@
   },
   "author": "Przemysław Sołtan",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/gedeonix/hebrew/issues"
-  },
   "homepage": "https://github.com/gedeonix/hebrew#readme",
   "dependencies": {
     "jest": "^26.4.2"
