@@ -88,6 +88,18 @@ body {
     font-size: 0.8rem;
 }
 
+.key-yellow {
+    background-color: #ffffd0;
+}
+
+.key-green {
+    background-color: #d0ffd0;
+}
+
+.key-blue {
+    background-color: #c0f0ff;
+}
+
 .key_info {
     border-top: #606060 1px solid;
     padding-top: 4px;
