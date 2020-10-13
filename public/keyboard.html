@@ -160,7 +160,7 @@
                 document.execCommand('insertText', false, key)
             },
             translate() {
-                return transcript(this.text)
+                return transcript(this.text, true)
             }
         }
     }).mount('#app')

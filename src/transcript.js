@@ -130,7 +130,6 @@ const code = {
 }
 
 const END = '׃'
-const SPACE = ' '
 const DAGESH = 'ּ'
 const SHEVA = 'ְ'
 
@@ -140,7 +139,7 @@ function isConsonant(text, index) {
 }
 
 function isFirst(text, i) {
-  return i === 0 || text[i - 1] === SPACE
+  return i === 0
 }
 
 function isFirstConsonan(text, i) {
@@ -174,21 +173,35 @@ function isVoicelessConsonant(char) {
   return false
 }
 
-export function transcript(str) {
+export function transcript(text, debug = false) {
+  if (text !== undefined) {
+    let words = text.split(' ')
+    let result = words.map(word => transcriptWord(word, debug))
+    if(result !== undefined) {
+      return result.join(' ')
+    }
+  }
+  return ''
+}
+
+export function transcriptWord(str, debug) {
   const re = new RegExp(Object.keys(code).join('|'), 'gi')
 
   return str.replace(re, (i, index, text) => {
     let value = code[i]
+
     let meta = {
-      first: index === 0 || text[index - 1] === SPACE,
-      last: index === text.length - 1 || (text[index + i.length] === SPACE || text[index + i.length] === END),
+      first: index === 0,
+      last: index === text.length - 1 || text[index + i.length] === END,
       key: i,
       size: i.length,
       value: value,
       dagesz: i.length === 2 && i[1] === DAGESH,
       szewa: i === SHEVA
     }
-    // console.log(i, index, '['+text+']', meta, text[index+1])
+    if (debug) {
+      console.log(i, index, '['+text+']', meta, text[index+1])
+    }
 
     // 1) podwojenie środkowych samogłosek przez dagesz
     if(meta.dagesz === true) {
