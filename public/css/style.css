@@ -72,6 +72,7 @@ body {
   padding: 3px 3px;
   font-size: 3rem;
   width: 3rem;
+  vertical-align: top;
 }
 
 .key:hover {
@@ -79,8 +80,12 @@ body {
   cursor: pointer;
 }
 
+.key_number {
+  font-size: 1rem;
+}
+
 .key_name {
-  font-size: 0.8rem;
+    font-size: 0.8rem;
 }
 
 .key_info {

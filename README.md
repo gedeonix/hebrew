@@ -66,8 +66,6 @@ Library of simple tools to support work on text in Hebrew (very early alpha)
 
 - Transliteracja i transkrypcja alfabetu hebrajskiego - https://rbl.ptt.net.pl/index.php/RBL/article/view/480/510
 
-### SBL Font
-
 ### SBL Fonts
 Fonts are not a direct part of the library, they were used only for the demo code.
 
