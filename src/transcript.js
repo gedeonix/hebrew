@@ -163,18 +163,13 @@ const END = '׃'
 const DAGESH = 'ּ'
 const SHEVA = 'ְ'
 
-function isConsonant(text, index) {
-  let value = text[index]
-  return value >= '\u05d0' && value <= '\u05ea'
-}
-
 function isFirst(text, i) {
   return i === 0
 }
 
 function isFirstConsonan(text, i) {
   if (isFirst(text, i - 1) === false) {
-    if (isConsonant(text, i - 1)) {
+    if (isConsonantLetter(text[i - 1])) {
       return false
     }
     if (isFirst(text, i - 2) === false) {
@@ -184,17 +179,21 @@ function isFirstConsonan(text, i) {
   return true
 }
 
-function isDoubleLetterDagesh(text, index) {
-  let letter = text[index]
-  if (letter === 'ו') return false // pomijamy, gdy waw
-  if (letter === 'ת') return false // pomijamy, gdy taw
-  if (letter === 'פ') return false // pomijamy, gdy pe
-  return true
+/**
+ * Consonant Letter
+ */
+export function isConsonantLetter(letter) {
+  return letter >= '\u05d0' && letter <= '\u05ea'
 }
 
-/**
- * Letter
- */
+export function isConsonantVowelLetter(letter) {
+  return 'אהוי'.includes(letter)
+}
+
+export function isGutturalLetter(letter) {
+  return 'אהחער'.includes(letter)
+}
+
 export function isBegedkephatLetter(letter) {
   return 'בגדכפת'.includes(letter) // with gadesh lene
 }
@@ -203,14 +202,13 @@ export function isSoffitLetter(letter) {
   return 'ךםןףץ'.includes(letter)
 }
 
-export function isGutturalLetter(letter) {
-  return 'אהחער'.includes(letter)
+function isDoubleLetterDagesh(text, index) {
+  let letter = text[index]
+  if (letter === 'ו') return false // pomijamy, gdy waw
+  if (letter === 'ת') return false // pomijamy, gdy taw
+  if (letter === 'פ') return false // pomijamy, gdy pe
+  return true
 }
-
-export function isConsonantLetter(letter) {
-  return letter >= '\u05d0' && letter <= '\u05ea'
-}
-
 /**
  * Numeric
  */
@@ -228,7 +226,7 @@ export function convertNumericWord(word, debug = false) {
       }
     }
 
-    // ggerafhayim
+    // gerafhayim
     if (size > 2 && word[size - 2] === '״') {
       let sum = 0
       for (let i = 0; i < size - 2; i++) {

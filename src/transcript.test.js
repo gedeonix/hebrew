@@ -237,6 +237,7 @@ describe('transcript', () => {
     expect(convertNumericWord('א׳')).toBe('1')
     expect(convertNumericWord('׳א')).toBe('׳א')
     expect(convertNumericWord('אבג״ד')).toBe('10')
+    expect(convertNumericWord('תרי״ג')).toBe('613') // taryag
     expect(convertNumericWord('1234')).toBe('1234')
   })
 
