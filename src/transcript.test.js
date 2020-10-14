@@ -1,4 +1,11 @@
-import { transcript } from './transcript'
+import {
+  convertNumericWord,
+  isBegedkephatLetter,
+  isConsonantLetter,
+  isGutturalLetter,
+  isSoffitLetter,
+  transcript
+} from './transcript'
 
 describe('transcript', () => {
   test('alphabet', () => {
@@ -189,4 +196,48 @@ describe('transcript', () => {
   test('simple', () => {
     // expect(transcript('יַעֲקֹב')).toBe('jaakow')
   })
+
+  test('isGutturalLetter', () => {
+    expect(isGutturalLetter('א')).toBe(true)
+    expect(isGutturalLetter('ה')).toBe(true)
+    expect(isGutturalLetter('ח')).toBe(true)
+    expect(isGutturalLetter('ע')).toBe(true)
+    expect(isGutturalLetter('ר')).toBe(true)
+    expect(isGutturalLetter('ת')).toBe(false)
+  })
+
+  test('isSoffitLetter', () => {
+    expect(isSoffitLetter('ך')).toBe(true)
+    expect(isSoffitLetter('ם')).toBe(true)
+    expect(isSoffitLetter('ן')).toBe(true)
+    expect(isSoffitLetter('ף')).toBe(true)
+    expect(isSoffitLetter('ץ')).toBe(true)
+    expect(isSoffitLetter('ת')).toBe(false)
+  })
+
+  test('isBegedkephatLetter', () => {
+    expect(isBegedkephatLetter('ב')).toBe(true)
+    expect(isBegedkephatLetter('ג')).toBe(true)
+    expect(isBegedkephatLetter('ד')).toBe(true)
+    expect(isBegedkephatLetter('כ')).toBe(true)
+    expect(isBegedkephatLetter('פ')).toBe(true)
+    expect(isBegedkephatLetter('ת')).toBe(true)
+    expect(isBegedkephatLetter('א')).toBe(false)
+  })
+
+  test('isConsonantLetter', () => {
+    expect(isConsonantLetter('א')).toBe(true)
+    expect(isConsonantLetter('ת')).toBe(true)
+    expect(isConsonantLetter('ּ')).toBe(false)
+    expect(isConsonantLetter('ְ')).toBe(false)
+    expect(isConsonantLetter('a')).toBe(false)
+  })
+
+  test('convertNumericWord', () => {
+    expect(convertNumericWord('א׳')).toBe('1')
+    expect(convertNumericWord('׳א')).toBe('׳א')
+    expect(convertNumericWord('אבג״ד')).toBe('10')
+    expect(convertNumericWord('1234')).toBe('1234')
+  })
+
 })
