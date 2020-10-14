@@ -31,79 +31,86 @@ const numbers = {
 const code = {
   // Accent
   /*
-      '֑': '?',
-      '֒': '?',
-      '֓': '?',
-      '֔': '?',ך
-      '֕': '?',
-      '֖': '?',
-      '֗': '?',
-      '֘': '?',
-      '֙': '?',
-      '֚': '?',
-      '֛': '?',
-      '֜': '?',
+      '\u0591': '?',
+      '\u0592': '?',
+      '\u0593': '?',
+      '\u0594': '?',\u05da
+      '\u0595': '?',
+      '\u0596': '?',
+      '\u0597': '?',
+      '\u0598': '?',
+      '\u0599': '?',
+      '\u059a': '?',
+      '\u059b': '?',
+      '\u059c': '?',
 
-      '֝': '?',
-      '֞': '?',
-      '֟': '?',
-      '֠': '?',
-      '֡': '?',
-      '֢': '?',
-      '֣': '?',
-      '֤': '?',
-      '֥': '?',
-      '֦': '?',
-      '֧': '?',
-      '֨': '?',
-      '֩': '?',
-      '֪': '?',
-      '֫': '?',
-      '֬': '?',
-      '֭': '?',
-      '֮': '?',
+      '\u059d': '?',
+      '\u059e': '?',
+      '\u059f': '?',
+      '\u05a0': '?',
+      '\u05a1': '?',
+      '\u05a2': '?',
+      '\u05a3': '?',
+      '\u05a4': '?',
+      '\u05a5': '?',
+      '\u05a6': '?',
+      '\u05a7': '?',
+      '\u05a8': '?',
+      '\u05a9': '?',
+      '\u05aa': '?',
+      '\u05ab': '?',
+      '\u05ac': '?',
+      '\u05ad': '?',
+      '\u05ae': '?',
       */
 
   // '\u05b4\u05d9': 'i', // TODO
   //'\u05af': '?', // masora circle
 
-  '\u05b0': 'ᵊ', //szewa = bardzo krótkie e
-  '\u05b1': 'e', //chataf-segol = bardzo krótkie e
-  '\u05b2': 'a', //patach
-  '\u05b3': '?', //kamac
+  // SZEWA
+  'ְ': 'ᵊ', // szewa = bardzo krótkie e
 
-  // jud
-  '\u05b4\u05d9': 'i', // chirk + jud = i (mamy tylko dwa przypadki utraty jud przy: chirik i cere)
-  '\u05b5\u05d9': 'e', // cere + jud = e
-  '\u05d9\u05b4': 'ji', // jud + chirk = ji (inna kolejność, najpierw jud)
+  // vowel type A
+  'ָ': 'a',  // kamac = długie a
+  'ָה': 'a', // kamac + he = = długie a (zwykle koniec słowa, he jest spółgłoską, gdy mapiqq)
+  'ַ': 'a',  // patah = któtkie a
+  'ַה': 'a', // patah + he = któtkie a (zwykle koniec słowa, he jest spółgłoską, gdy mapiqq)
+  'ֲ': 'a',  // chataf-patach = krótkie a (tylko pod gardłowymi, zwykle część kolejnej sylaby)
 
-  // waw
-  '\u05d5\u05bc': 'u', // waw + dagesz (mapik) = u
-  '\u05d5\u05b9': 'o', // waw + cholam = o
+  // vowel type E
+  'ֵי': 'e', // cere + jud = e
+  'ֵ': 'e',  // cere = długie e
+  'ֶי': 'e', // segol + jud = e
+  'ֶ': 'e',  // segol = któtkie e
+  'ֱ': 'e',  // chataf-segol = bardzo krótkie e (tylko pod gardłowymi)
 
-  // he
-  '\u05b6\u05d4': 'e', // segol + he = któtkie e
+  // vowel type I
+  'ִי': 'i', // chirk + jud = i (mamy tylko dwa przypadki utraty jud przy: chirik i cere)
+  'ִ': 'i',  // chirik = i
+  'יִ': 'ji', // jud + chirk = ji (inna kolejność, najpierw jud)
 
-  '\u05b4': 'i', // chirik = i
-  '\u05b5': 'e', // cere = długie egetB
-  '\u05b6': 'e', // segol = któtkie e
-  '\u05b7': 'a', // patah
-  '\u05b8': 'a', // kamac
-  '\u05b9': 'o', // cholam
-  '\u05ba': '?',
-  '\u05bb': 'u', // kubuc
+  // vowel type O
+  'ֹ': 'o', // cholam = długie o
+  'וֹ': 'o', // waw + cholam = długie o
+  'ֳ': 'o', // chataf-kamac = krótkie o (tylko pod gardłowymi, zwykle część kolejnej sylaby)
+  'ׇ': 'o', // kamac-katan = o (to jest bardzo rzadkie, sylaba zamknięta i nieakcentowana)
+
+  // vowel type U
+  'וּ': 'u', // szuruk -> waw + mapik (dagesz) = długie u (czasami używany na początku słowa)
+  'ֻ': 'u', // kubuc = krótkie u
+
+  'ֺ': '?',
   'ּ': '?', // dagesz
-  '\u05bd': '?',
-  '\u05be': '\u05be',
-  '\u05bf': '?',
-  '\u05c0': '?',
-  '\u05c1': '?',
-  '\u05c2': '?',
-  '\u05c3': '.',
-  '\u05c4': '?',
-  '\u05c5': '?',
-  '\u05c6': '?', // nun hafukha
-  '\u05c7': '?',
+  'ֽ': '?',
+  '־': '־',
+  'ֿ': '?',
+  '׀': '?',
+  'ׁ': '?',
+  'ׂ': '?',
+  '׃': '.',
+  'ׄ': '?',
+  'ׅ': '?',
+  '׆': '?', // nun hafukha
 
   // Letter
   א: '', // alef (a, e, i, o, u)
@@ -186,7 +193,7 @@ export function isConsonantLetter(letter) {
   return letter >= '\u05d0' && letter <= '\u05ea'
 }
 
-export function isConsonantVowelLetter(letter) {
+export function isMatresLectionisLetter(letter) {
   return 'אהוי'.includes(letter)
 }
 
@@ -202,6 +209,10 @@ export function isSoffitLetter(letter) {
   return 'ךםןףץ'.includes(letter)
 }
 
+export function isDageshChazak(letter, prev) {
+  return false // TODO
+}
+
 function isDoubleLetterDagesh(text, index) {
   let letter = text[index]
   if (letter === 'ו') return false // pomijamy, gdy waw
@@ -209,6 +220,30 @@ function isDoubleLetterDagesh(text, index) {
   if (letter === 'פ') return false // pomijamy, gdy pe
   return true
 }
+
+/**
+ * Vowel Letter
+ */
+export function isVowelATypeLetter(letter) {
+  return 'ֲַָ'.includes(letter)
+}
+
+export function isVowelETypeLetter(letter) {
+  return 'ֱֵֶ'.includes(letter)
+}
+
+export function isVowelITypeLetter(letter) {
+  return null // TODO
+}
+
+export function isVowelOTypeLetter(letter) {
+  return null // TODO
+}
+
+export function isVowelUTypeLetter(letter) {
+  return null // TODO
+}
+
 /**
  * Numeric
  */

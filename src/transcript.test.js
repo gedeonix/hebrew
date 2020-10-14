@@ -3,6 +3,7 @@ import {
   isBegedkephatLetter,
   isConsonantLetter,
   isGutturalLetter,
+  isMatresLectionisLetter,
   isSoffitLetter,
   transcript
 } from './transcript'
@@ -68,7 +69,7 @@ describe('transcript', () => {
     expect(transcript('רְאוּבֵן')).toBe('rᵊuwen') // test na wyłączoną duplikację przez dagesz
 
     expect(transcript('ֶה')).toBe('e') // segol + he = e
-    expect(transcript( 'ֵי')).toBe('e') // cere + jud = e
+    expect(transcript('ֵי')).toBe('e') // cere + jud = e
 
     expect(transcript('ֹהִ')).toBe('ohi') // he pomiędzy samogłoskami
     expect(transcript('האאא')).toBe('h') // he na początku (przedimek określony)
@@ -109,8 +110,8 @@ describe('transcript', () => {
   })
 
   test('function', () => {
-      expect(transcript('אֵת')).toBe('et') // po tym wyrazie będzie dopełnienie w bierniku (kogo? co?)
-      expect(transcript('אֵת יַעֲקֹב')).toBe('et jaakow') // et - bliskość z wyrazem po - przyimek z, razem (z kimś, z czymś)
+    expect(transcript('אֵת')).toBe('et') // po tym wyrazie będzie dopełnienie w bierniku (kogo? co?)
+    expect(transcript('אֵת יַעֲקֹב')).toBe('et jaakow') // et - bliskość z wyrazem po - przyimek z, razem (z kimś, z czymś)
     expect(transcript('הַבָּאִים')).toBe('habbaim') // przybyli - imiesłów czynny (przybywający)
   })
 
@@ -231,6 +232,14 @@ describe('transcript', () => {
     expect(isConsonantLetter('ּ')).toBe(false)
     expect(isConsonantLetter('ְ')).toBe(false)
     expect(isConsonantLetter('a')).toBe(false)
+  })
+
+  test('isMatresLectionisLetter', () => {
+    expect(isMatresLectionisLetter('א')).toBe(true)
+    expect(isMatresLectionisLetter('ה')).toBe(true)
+    expect(isMatresLectionisLetter('ו')).toBe(true)
+    expect(isMatresLectionisLetter('י')).toBe(true)
+    expect(isMatresLectionisLetter('ב')).toBe(false)
   })
 
   test('convertNumericWord', () => {
