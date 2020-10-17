@@ -5,7 +5,7 @@ import {
   isGutturalLetter,
   isMatresLectionisLetter,
   isSoffitLetter,
-  transcript
+  transcript, transcriptWord
 } from './transcript'
 
 describe('transcript', () => {
@@ -93,8 +93,7 @@ describe('transcript', () => {
 
     expect(transcript('שּׁ')).toBe('szsz')
     expect(transcript('שּׂ')).toBe('ss')
-
-    // expect(transcript('שִׁי')).toBe('szi')
+    expect(transcript('שִׁי')).toBe('szi')
 
     expect(transcript('בְּרֵאשִׁית')).toBe('bᵊreszit')
     expect(transcript('שְׁמוֹת')).toBe('szᵊmot')
@@ -107,6 +106,11 @@ describe('transcript', () => {
 
   test('patah furtivum', () => {
     // expect(transcript('רוּחַ')).toBe('ruah')
+  })
+
+  test('dagesz', () => {
+    expect(transcriptWord('הַשָּׁמַיִם', true)).toBe('haszszamajim')
+    expect(transcriptWord('הַבָּאִים')).toBe('habbaim', true) // przybyli - imiesłów czynny (przybywający)
   })
 
   test('function', () => {

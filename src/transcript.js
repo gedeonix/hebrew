@@ -67,9 +67,6 @@ const code = {
   // '\u05b4\u05d9': 'i', // TODO
   //'\u05af': '?', // masora circle
 
-  // SZEWA
-  'ְ': 'ᵊ', // szewa = bardzo krótkie e
-
   // vowel type A
   'ָ': 'a',  // kamac = długie a
   'ָה': 'a', // kamac + he = = długie a (zwykle koniec słowa, he jest spółgłoską, gdy mapiqq)
@@ -85,22 +82,26 @@ const code = {
   'ֱ': 'e',  // chataf-segol = bardzo krótkie e (tylko pod gardłowymi)
 
   // vowel type I
-  'ִי': 'i', // chirk + jud = i (mamy tylko dwa przypadki utraty jud przy: chirik i cere)
-  'ִ': 'i',  // chirik = i
-  'יִ': 'ji', // jud + chirk = ji (inna kolejność, najpierw jud)
+  'ִי': 'i', // chirk + jud = długie i (mamy tylko dwa przypadki utraty jud przy: chirik i cere)
+  'ִ': 'i',  // chirik = krótkie i
 
   // vowel type O
   'ֹ': 'o', // cholam = długie o
   'וֹ': 'o', // waw + cholam = długie o
   'ֳ': 'o', // chataf-kamac = krótkie o (tylko pod gardłowymi, zwykle część kolejnej sylaby)
-  'ׇ': 'o', // kamac-katan = o (to jest bardzo rzadkie, sylaba zamknięta i nieakcentowana)
+  'ׇ': 'o',  // kamac-katan = o (to jest bardzo rzadkie, sylaba zamknięta i nieakcentowana)
 
   // vowel type U
   'וּ': 'u', // szuruk -> waw + mapik (dagesz) = długie u (czasami używany na początku słowa)
   'ֻ': 'u', // kubuc = krótkie u
 
+  'ְ': 'ᵊ', // szewa = bardzo krótkie e (szewa na - wokalna, szewa nach - cicha wskazuje koniec sylaby)
+
+  // dyftong - (długa samogłoska) - todo
+  'יִ': 'ji', // jud + chirk = ji (inna kolejność, najpierw jud)
+
   'ֺ': '?',
-  'ּ': '?', // dagesz
+  'ּ': 'ּ', // dagesz
   'ֽ': '?',
   '־': '־',
   'ֿ': '?',
@@ -129,9 +130,7 @@ const code = {
   כּ: 'k', // kaf
   כ: 'ch', //chaf
   ך: 'ch',
-  'לּ': 'l', // lamed
   ל: 'l', // lamed
-  'מּ': 'm', // mem
   מ: 'm', // mem
   ם: 'm',
   נ: 'n', // nun
@@ -145,14 +144,9 @@ const code = {
   ץ: 'c',
   ק: 'k', // kof
   ר: 'r', // resz
-
-  //'שִׁי': 'szi', // TODO
-  'שּׁ': 'szsz',
-  שׁ: 'sz', // szin
-  'שּׂ': 'ss',
+  שׁ: 'sz', // szi
   שׂ: 's', // sin
   ש: 's',
-
   תּ: 't', // taw
   ת: 't'
 
@@ -167,19 +161,14 @@ const code = {
 }
 
 const END = '׃'
-const DAGESH = 'ּ'
 const SHEVA = 'ְ'
 
-function isFirst(text, i) {
-  return i === 0
-}
-
 function isFirstConsonan(text, i) {
-  if (isFirst(text, i - 1) === false) {
+  if (i - 1 !== 0) {
     if (isConsonantLetter(text[i - 1])) {
       return false
     }
-    if (isFirst(text, i - 2) === false) {
+    if (i - 2 !== 0) {
       return false
     }
   }
@@ -282,6 +271,25 @@ export function convertNumericWord(word, debug = false) {
   return word // not convert
 }
 
+// SZEWA (bezpośredni wpływ na podział słowa na sylaby)
+// - gardłowe spółgłoski nie mogą mieć szewy wokalnej, za to mogą używac formy charaf-...
+// - gardłowe mogą znieść cichą szewę
+// - na końcu słowa szewa jest zawsze cicha
+
+// szewa wokalna
+//  - początek słowa
+//  - gdy jest kolejna z rzędu (poprzedza ją inna szewa)
+//  - pod spólgłoską z dagesz forte
+//  - następujący po nim długa samogłoska
+//  - jest pod pierwszą z dwóch takich samych spółgłosek
+function isSilentSzewa(text, index, meta) {
+  if (meta.szewa === true && meta.first === false && meta.last === false) {
+    if (isFirstConsonan(text, index) === false) {
+      return true // niema szewa jest w środku wyrazu
+    }
+  }
+  return false
+}
 
 /**
  * bezdzwięczne spółgłoski
@@ -292,6 +300,73 @@ function isVoicelessConsonant(char) {
   if (char === 'ו') return false // waw (gdy traci swoje brzmienie - szuruk oraz cholam)
   if (char === 'י') return false // jud (gdy traci swoje brzmienie - długie chirik i długie cere)
   return false
+}
+
+const re = new RegExp(Object.keys(code).join('|'), 'gi')
+
+export function transcriptWord(str, debug) {
+
+  let list = []
+
+  return str.replace(re, (i, index, text) => {
+
+    let meta = {
+      first: index === 0,
+      last: index === text.length - 1 || text[index + i.length] === END,
+      key: i,
+      size: i.length,
+      value: code[i],
+      dagesz1: i === 'ּ',
+      dagesz2: i.length === 2 && i[1] === 'ּ',
+      szewa: i === SHEVA
+    }
+    list.push(meta)
+
+    if (debug) {
+      console.log(i, index, '[' + text + ']', meta, text[index + 1])
+    }
+
+    // 1) podwojenie środkowych samogłosek przez dagesz
+    if (meta.dagesz1 === true) {
+      debugger
+      if (isDoubleLetterDagesh(text, index)) {
+
+        if (meta.first === false) {
+          // TODO sprawdzić, czy wczesniej jest długa lub krótka samogłoska, ale nie szewa
+
+          if(list.length > 0) {
+            let prev = list[list.length - 2]
+            meta.value = prev.value //podwojenie
+          }
+
+        }
+      }
+    }
+
+    if (meta.dagesz2 === true) {
+      // dagesz z b
+      if (isDoubleLetterDagesh(text, index)) {
+        if (meta.first === false) {
+          meta.value = meta.value + meta.value
+        }
+      }
+    }
+
+    // 2) nieme he na końcu
+    if (i === 'ה' && meta.first === false && meta.last === true) {
+      return ''
+    }
+
+    // 3) niema szewa wewnątrz wyrazów (szewa pod pierwszą spółgłoską jest wymawiana)
+    if(isSilentSzewa(text, index, meta)) {
+      return ''
+    }
+
+    // 4) pomijam nieme - alef i ajin
+    if (meta.value === '') return meta.value
+
+    return meta.value || i
+  })
 }
 
 export function transcript(text, debug = false) {
@@ -307,54 +382,4 @@ export function transcript(text, debug = false) {
     }
   }
   return ''
-}
-
-export function transcriptWord(str, debug) {
-  const re = new RegExp(Object.keys(code).join('|'), 'gi')
-
-  return str.replace(re, (i, index, text) => {
-    let value = code[i]
-
-    let meta = {
-      first: index === 0,
-      last: index === text.length - 1 || text[index + i.length] === END,
-      key: i,
-      size: i.length,
-      value: value,
-      dagesz: i.length === 2 && i[1] === DAGESH,
-      szewa: i === SHEVA
-    }
-    if (debug) {
-      console.log(i, index, '[' + text + ']', meta, text[index + 1])
-    }
-
-    // 1) podwojenie środkowych samogłosek przez dagesz
-    if (meta.dagesz === true) {
-
-      if (isDoubleLetterDagesh(text, index)) {
-
-        if (meta.first === false /*&& meta.last === false*/) {
-          // TODO sprawdzić, czy wczesniej jest długa lub krótka samogłoska, ale nie szewa
-          value = value + value //podwojenie
-        }
-      }
-    }
-
-    // 2) nieme he na końcu
-    if (i === 'ה' && meta.first === false && meta.last === true) {
-      return ''
-    }
-
-    // 3) niema szewa wewnątrz wyrazów (szewa pod pierwszą spółgłoską jest wymawiana)
-    if (meta.szewa === true && meta.first === false && meta.last === false) {
-      if (isFirstConsonan(text, index) === false) {
-        return '' // niema szewa jest w środku wyrazu
-      }
-    }
-
-    // 4) pomijam nieme - alef i ajin
-    if (value === '') return value
-
-    return value || i
-  })
 }
