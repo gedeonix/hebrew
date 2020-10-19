@@ -111,11 +111,6 @@ body {
   width: 3rem;
 }
 
-.key_space {
-    display: inline-block;
-    width: 1rem;
-}
-
 .box {
   display: flex;
   flex-direction: column;

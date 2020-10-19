@@ -282,7 +282,7 @@ export function convertNumericWord(word, debug = false) {
 //  - pod spólgłoską z dagesz forte
 //  - następujący po nim długa samogłoska
 //  - jest pod pierwszą z dwóch takich samych spółgłosek
-function isSilentSzewa(text, index, meta) {
+function isSilentSzewa(meta, text, index) {
   if (meta.szewa === true && meta.first === false && meta.last === false) {
     if (isFirstConsonan(text, index) === false) {
       return true // niema szewa jest w środku wyrazu
@@ -304,69 +304,87 @@ function isVoicelessConsonant(char) {
 
 const re = new RegExp(Object.keys(code).join('|'), 'gi')
 
-export function transcriptWord(str, debug) {
+/**
+ * 2) nieme he na końcu
+ */
+function ruleLastHe(meta, lex) {
+  if (lex === 'ה' && meta.first === false && meta.last === true) {
+    meta.value = ''
+  }
+}
 
+/**
+ * 3) niema szewa wewnątrz wyrazów (szewa pod pierwszą spółgłoską jest wymawiana)
+ */
+function ruleSilentSzewa(meta, word, index) {
+  if (isSilentSzewa(meta, word, index)) {
+    meta.value = ''
+  }
+}
+
+/**
+ * 4) pomijam nieme - alef lex ajin
+ */
+function ruleEmpty(meta, lex) {
+  meta.value = (meta.value === '') ? '' : meta.value || lex
+}
+
+export function transcriptWord(word, debug) {
+
+  let index = 0
   let list = []
 
-  return str.replace(re, (i, index, text) => {
+  /**
+   * 1) podwojenie środkowych samogłosek przez dagesz
+   */
+  function ruleDagesz(meta, word, index) {
+    if (isDoubleLetterDagesh(word, index)) {
+      if (meta.first === false) {
 
-    let meta = {
-      first: index === 0,
-      last: index === text.length - 1 || text[index + i.length] === END,
-      key: i,
-      size: i.length,
-      value: code[i],
-      dagesz1: i === 'ּ',
-      dagesz2: i.length === 2 && i[1] === 'ּ',
-      szewa: i === SHEVA
-    }
-    list.push(meta)
-
-    if (debug) {
-      console.log(i, index, '[' + text + ']', meta, text[index + 1])
-    }
-
-    // 1) podwojenie środkowych samogłosek przez dagesz
-    if (meta.dagesz1 === true) {
-      debugger
-      if (isDoubleLetterDagesh(text, index)) {
-
-        if (meta.first === false) {
+        if (meta.dagesz1 === true) {
           // TODO sprawdzić, czy wczesniej jest długa lub krótka samogłoska, ale nie szewa
-
-          if(list.length > 0) {
+          if (list.length > 0) {
             let prev = list[list.length - 2]
             meta.value = prev.value //podwojenie
           }
-
         }
+
+        if (meta.dagesz2 === true) {
+          // dagesz z b
+            meta.value = meta.value + meta.value
+        }
+
       }
     }
+  }
 
-    if (meta.dagesz2 === true) {
-      // dagesz z b
-      if (isDoubleLetterDagesh(text, index)) {
-        if (meta.first === false) {
-          meta.value = meta.value + meta.value
-        }
-      }
+  let result = word.replace(re, (lex, index, word) => {
+
+    let meta = {
+      first: index === 0,
+      last: index === word.length - 1 || word[index + lex.length] === END,
+      key: lex,
+      size: lex.length,
+      value: code[lex],
+      dagesz1: lex === 'ּ',
+      dagesz2: lex.length === 2 && lex[1] === 'ּ',
+      szewa: lex === SHEVA
+    }
+    list.push(meta)
+
+    ruleDagesz(meta, word, index)
+    ruleLastHe(meta, lex)
+    ruleSilentSzewa(meta, word, index)
+    ruleEmpty(meta, lex)
+
+    if (debug) {
+      console.log(lex, index, '[' + word + ']', meta, word[index + 1])
     }
 
-    // 2) nieme he na końcu
-    if (i === 'ה' && meta.first === false && meta.last === true) {
-      return ''
-    }
-
-    // 3) niema szewa wewnątrz wyrazów (szewa pod pierwszą spółgłoską jest wymawiana)
-    if(isSilentSzewa(text, index, meta)) {
-      return ''
-    }
-
-    // 4) pomijam nieme - alef i ajin
-    if (meta.value === '') return meta.value
-
-    return meta.value || i
+    return meta.value
   })
+
+  return result
 }
 
 export function transcript(text, debug = false) {

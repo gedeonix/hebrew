@@ -147,6 +147,11 @@ describe('transcript', () => {
     // expect(transcript('לִלְלל')).toBe('lִlְll')
   })
 
+  test('syllabe1', () => {
+    // expect(transcript('מֶה')).toBe('me')
+    expect(transcript('רְאוּבֵן')).toBe('rᵊuwen') // test na wyłączoną duplikację przez dagesz
+  })
+
   test('syllabe', () => {
 
     // sylaba zaczyna się od spółgłoski (wyjątkiem jest szuruk (waw + dagesz = u) na początku)
