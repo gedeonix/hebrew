@@ -2,9 +2,12 @@
 
 Library of simple tools to support work on text in Hebrew (very early alpha)
 
-## Demo
- Simple demo in ./public/keyboard.html file.
+## Demos
 
+ * Simple demo in ./public/interline.html file.
+ ![demo screen](./public/images/interline.png)
+ 
+ * Simple demo in ./public/keyboard.html file.
  ![demo screen](./public/images/demo.png)
  
 ## Test examples
