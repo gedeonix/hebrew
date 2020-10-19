@@ -1,0 +1,15 @@
+.interline-row {
+    display: block;
+    border: 1px #ffcfcf solid;
+    margin-bottom: 1rem;
+}
+
+.interline-word {
+    display: inline-block;
+    background-color: #ffff80;
+}
+
+.text-transcript {
+    color: blue;
+    font-size: 1.5rem;
+}

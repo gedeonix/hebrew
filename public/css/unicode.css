@@ -1,0 +1,18 @@
+.box {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff8d7;
+    padding: 4px;
+    border: solid #2c3e50;
+    width: 6rem;
+    height: 6rem;
+    margin: 3px;
+}
+.box-char {
+    font-size: 4rem;
+}
+.box-code {
+    font-weight: bold;
+    margin-top: -1rem;
+    font-size: 1rem;
+}

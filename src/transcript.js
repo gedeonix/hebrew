@@ -355,14 +355,17 @@ function ruleEmpty(meta, lex) {
   meta.value = (meta.value === '') ? '' : meta.value || lex
 }
 
-export function transcriptWord(word, debug) {
+export function parse(word, debug) {
 
   const re = new RegExp(Object.keys(code).join('|'), 'gi')
 
   let index = 0
-  let list = []
+  let result = []
 
   let match = word.match(re)
+  if(match === null) {
+    return result
+  }
 
   for(let i = 0; i < match.length; i++) {
     let lex = match[i]
@@ -376,10 +379,10 @@ export function transcriptWord(word, debug) {
       szewa: isShevaInWord(lex),
       value: code[lex]
     }
-    list.push(meta)
+    result.push(meta)
 
     // rules
-    ruleDagesz(meta, lex, word, index, list)
+    ruleDagesz(meta, lex, word, index, result)
     ruleLastHe(meta, lex)
     ruleSilentSzewa(meta, word, index)
     ruleEmpty(meta, lex)
@@ -390,9 +393,7 @@ export function transcriptWord(word, debug) {
 
     index = index + lex.length
   }
-
-  let result = list.map( meta => meta.value )
-  return result.join('')
+  return result;
 }
 
 export function transcript(text, debug = false) {
@@ -401,11 +402,25 @@ export function transcript(text, debug = false) {
 
     let result = words
       .map(word => convertNumericWord(word, debug))
-      .map(word => transcriptWord(word, debug))
+      .map(word => parse(word, debug))
+      .map(list => list.map( meta => meta.value ).join('') )
 
     if (result !== undefined) {
       return result.join(' ')
     }
   }
   return ''
+}
+
+export function interline(text, debug = false) {
+  if (text !== undefined) {
+    let words = text.split(' ')
+
+    let result = words
+      .map(word => convertNumericWord(word, debug))
+      .map(word => parse(word, debug))
+      .map(list => list.map( meta => meta.value ).join('') )
+
+  }
+  return []
 }

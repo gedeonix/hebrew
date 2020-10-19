@@ -1,0 +1,56 @@
+/* COMPONENTS */
+.textarea {
+    font-size: 4rem;
+    background-color: #fff8d7;
+    color: #6d5e5e;
+    width: 100%;
+    padding: 0.7rem 0.5rem;
+    -webkit-appearance: none;
+    width: 100%;
+}
+
+.key {
+    background-color: #ffffff;
+    border-radius: 5px;
+    border-width: 1px;
+    padding: 3px 3px;
+    font-size: 3rem;
+    width: 3rem;
+    vertical-align: top;
+}
+
+.key:hover {
+    background-color: #d0d0d0;
+    cursor: pointer;
+}
+
+.key_number {
+    font-size: 1rem;
+}
+
+.key_name {
+    font-size: 0.8rem;
+}
+
+.key-yellow {
+    background-color: #ffffd0;
+}
+
+.key-green {
+    background-color: #d0ffd0;
+}
+
+.key-blue {
+    background-color: #c0f0ff;
+}
+
+.key_info {
+    border-top: #606060 1px solid;
+    padding-top: 4px;
+    font-size: 0.8rem;
+}
+
+.key_space {
+    display: inline-block;
+    width: 3rem;
+}

@@ -4,14 +4,15 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Unicode - hebrew</title>
+  <title>Unicode</title>
   <link type="text/css" href="css/style.css" rel="stylesheet" charset="utf-8">
   <link type="text/css" href="css/hebrew.css" rel="stylesheet" charset="utf-8">
+  <link type="text/css" href="css/unicode.css" rel="stylesheet" charset="utf-8">
 </head>
 <body class="hebrew">
 <div id="app" v-cloak>
   <div class="container">
-    <h1>Unicode - hebrew</h1>
+    <h1>Unicode</h1>
     <div class="row">
       <div class="box" v-for="item in tabs" :key="item.code">
         <div class="box-char hebrew" :class="'hebrew_'+item.type">{{ item.code }}</div>

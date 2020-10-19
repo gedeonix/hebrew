@@ -109,8 +109,8 @@ describe('transcript', () => {
   })
 
   test('dagesz', () => {
-    expect(transcriptWord('הַשָּׁמַיִם', true)).toBe('haszszamajim')
-    expect(transcriptWord('הַבָּאִים')).toBe('habbaim', true) // przybyli - imiesłów czynny (przybywający)
+    expect(transcript('הַשָּׁמַיִם', true)).toBe('haszszamajim')
+    expect(transcript('הַבָּאִים')).toBe('habbaim', true) // przybyli - imiesłów czynny (przybywający)
   })
 
   test('function', () => {
