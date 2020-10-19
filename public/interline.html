@@ -19,9 +19,22 @@
     <div class="row" dir="rtl">
       <template v-for="(row, index) in tanach">
         <div class="interline-row">
+
+          <template v-for="(item, i) in verse(index).tanach.split(' ')">
+            <div class="interline-word">
+              <div class="text-index">{{i+1}}</div>
+              <div class="text hebrew">{{item}}</div>
+              <div class="text-transcript">{{transcript(item)}}</div>
+            </div>
+          </template>
+
+          <div dir="ltr" class="text-translate">{{verse(index).ubg}}</div>
+
+          <!--
           <div class="text hebrew">{{row}}</div>
           <div class="text-transcript hebrew">{{transcript(row)}}</div>
-          <div dir="ltr" class="text-translate">{{translate(index)}}</div>
+          -->
+
         </div>
       </template>
     </div>
@@ -111,9 +124,13 @@
       }
     },
     methods: {
-      translate(index) {
-        return this.ubg[index].replaceAll(/<RX.*?>|<RF>.*?<Rf>|<FI>|<Fi>/gi,'')
-      }
+      verse(index) {
+        return {
+          tanach: this.tanach[index],
+          ubg: this.ubg[index].replaceAll(/<RX.*?>|<RF>.*?<Rf>|<FI>|<Fi>/gi,'')
+        }
+      },
+
     }
   }).mount('#app')
 </script>

@@ -6,7 +6,17 @@
 
 .interline-word {
     display: inline-block;
-    background-color: #ffff80;
+    background-color: #ffffc0;
+    padding: 4px;
+    margin: 4px;
+}
+
+.text-index {
+    font-family: Arial;
+    color: gray;
+    font-size: 1rem;
+    margin: 4px;
+    text-align: center;
 }
 
 .text-transcript {
@@ -15,7 +25,8 @@
 }
 
 .text-translate {
-    font-family: Arial;
+    font-family: "Times New Roman";
     color: black;
-    font-size: 1rem;
+    font-size: 1.5rem;
+    margin: 4px;
 }
