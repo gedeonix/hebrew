@@ -12,20 +12,25 @@
 <body class="hebrew">
 <div id="app">
   <div class="container">
-    <h1>Interline</h1>
+    <h1>Interline (Tanach + UBG)</h1>
     <hr>
 
+    <h2>Genesis 1:1-31</h2>
     <div class="row" dir="rtl">
-      <template v-for="row in hebrew">
+      <template v-for="(row, index) in tanach">
         <div class="interline-row">
           <div class="text hebrew">{{row}}</div>
           <div class="text-transcript hebrew">{{transcript(row)}}</div>
+          <div dir="ltr" class="text-translate">{{translate(index)}}</div>
         </div>
       </template>
     </div>
 
     <hr>
-    <p>SBL fonts are made available without cost to individual scholars for non-profit use</p>
+    <p><b>SBL Fonts</b> are made available without cost to individual scholars for non-profit use</p>
+    <p><b>Unicode/XML Leningrad Codex (Tanach)</b> - http://www.tanach.us - license: All biblical Hebrew text, in any format,
+      may be viewed or copied without restriction. (version 26.0)</p>
+    <p><b>Updated Gdańsk Bible (Uwspółcześniona Biblia Gdańska)</b> - www.wrotanadziei.org - license: The publisher authorizes all copying and distribution of this work both in part and in its entirety, under the condition that it is done completely free of charge and that the content remains completely unchanged. Distribution for commercial purposes requires written permission from the Foundation.</p>
   </div>
 </div>
 <script defer src="https://unpkg.com/vue@next"></script>
@@ -37,7 +42,7 @@
       return {
         interline: interline,
         transcript: transcript,
-        hebrew: [
+        tanach: [
           'בְּרֵאשִׁית בָּרָא אֱלֹהִים אֵת הַשָּׁמַיִם וְאֵת הָאָרֶץ',
           'וְהָאָרֶץ הָיְתָה תֹהוּ וָבֹהוּ וְחֹשֶׁךְ עַל־פְּנֵי תְהוֹם וְרוּחַ אֱלֹהִים מְרַחֶפֶת עַל־פְּנֵי הַמָּיִם',
           'וַיֹּאמֶר אֱלֹהִים יְהִי אוֹר וַיְהִי־אוֹר',
@@ -69,12 +74,45 @@
           'וַיֹּאמֶר אֱלֹהִים הִנֵּה נָתַתִּי לָכֶם אֶת־כָּל־עֵשֶׂב זֹרֵעַ זֶרַע אֲשֶׁר עַל־פְּנֵי כָל־הָאָרֶץ וְאֶת־כָּל־הָעֵץ אֲשֶׁר־בּוֹ פְרִי־עֵץ זֹרֵעַ זָרַע לָכֶם יִהְיֶה לְאָכְלָה',
           'וּלְכָל־חַיַּת הָאָרֶץ וּלְכָל־עוֹף הַשָּׁמַיִם וּלְכֹל רוֹמֵשׂ עַל־הָאָרֶץ אֲשֶׁר־בּוֹ נֶפֶשׁ חַיָּה אֶת־כָּל־יֶרֶק עֵשֶׂב לְאָכְלָה וַיְהִי־כֵן',
           'וַיַּרְא אֱלֹהִים אֶת־כָּל־אֲשֶׁר עָשָׂה וְהִנֵּה־טוֹב מְאֹד וַיְהִי־עֶרֶב וַיְהִי־בֹקֶר יוֹם הַשִּׁשִּׁי'
-          ]
+        ],
+        ubg: [
+          'Na początku Bóg stworzył<RX 19.96.5><RX 39.2.10><RX 41.13.19><RX 43.1.1-3><RX 49.3.9><RX 51.1.16-17><RX 58.11.3><RF>Ps 96,5; Ml 2,10; Mk 13,19; J 1,1-3; Ef 3,9; Kol 1,16-17; Hbr 11,3.<Rf> niebo i ziemię.<RX 16.9.6><RX 19.33.6><RX 19.102.25><RX 23.42.5><RX 24.32.17><RX 44.14.15><RX 44.17.24><RF>Ne 9,6; Ps 33,6; 102,25; Iz 42,5; Jr 32,17; Dz 14,15; 17,24.<Rf>',
+          'A ziemia była bezkształtna i pusta<RX 18.26.7><RX 23.45.18><RX 24.4.23><RF>Hi 26,7; Iz 45,18; Jr 4,23.<Rf> i ciemność była nad głębią, a Duch Boży<RX 19.104.30><RF>Ps 104,30.<Rf> unosił się nad wodami.',
+          'I Bóg powiedział: Niech stanie się światłość.<RX 18.38.19><RX 19.33.9><RX 23.45.7><RX 47.4.6><RF>Hi 38,19; Ps 33,9; Iz 45,7; 2Kor 4,6.<Rf> I stała się światłość.',
+          'Bóg widział, że światłość <FI>była<Fi> dobra. I oddzielił Bóg światłość od ciemności.',
+          'I nazwał Bóg światłość dniem,<RX 43.9.4><RX 43.11.9><RX 47.11.25><RF>J 9,4; 11,9; 2Kor 11,25.<Rf> a ciemność nazwał nocą. I nastał wieczór i poranek, dzień pierwszy.<RX 3.23.32><RF>Kpł 23,32.<Rf>',
+          'Potem Bóg powiedział: Niech stanie się firmament<RX 18.26.7-13><RX 18.37.18><RX 19.19.1><RX 19.104.2><RF>Hi 26,7-13; 37,18; Ps 19,1; 104,2.<Rf> pośrodku wód i niech oddzieli wody od wód.',
+          'I uczynił Bóg firmament, i oddzielił wody, które <FI>są<Fi> pod firmamentem, od wód, które są nad firmamentem. I tak się stało.',
+          'I Bóg nazwał firmament niebem. I nastał wieczór i poranek, dzień drugi.',
+          'Potem Bóg powiedział: Niech się zbiorą w jednym miejscu wody, <FI>które są<Fi> pod niebem, i niech się ukaże sucha <FI>powierzchnia<Fi>.<RX 19.95.5><RF>Ps 95,5.<Rf> I tak się stało.',
+          'I Bóg nazwał suchą <FI>powierzchnię<Fi> ziemią,<RX 5.10.14><RX 18.26.7><RX 19.24.1><RX 19.47.7><RX 19.102.25><RF>Pwt 10,14; Hi 26,7; Ps 24,1; 47,7; 102,25.<Rf> a zbiorowisko wód – morzami. I Bóg widział, że <FI>to było<Fi> dobre.',
+          'Potem Bóg powiedział: Niech ziemia zrodzi trawę, rośliny wydające nasiona i drzewo urodzajne<RX 19.104.14><RX 40.6.30><RX 58.6.7><RF>Ps 104,14; Mt 6,30; Hbr 6,7.<Rf> przynoszące owoc według swego rodzaju, którego nasienie będzie w nim na ziemi. I tak się stało.',
+          'I ziemia wydała trawę, rośliny wydające nasienie według swego rodzaju i drzewo przynoszące owoc, w którym było nasienie według swego rodzaju.<RX 23.55.10><RX 23.61.11><RX 41.4.28><RF>Iz 55,10; 61,11; Mk 4,28.<Rf> I Bóg widział, że to było dobre.',
+          'I nastał wieczór i poranek, dzień trzeci.',
+          'Potem Bóg powiedział: Niech się staną światła<RX 19.136.5-9><RF>Ps 136,5-9.<Rf> na firmamencie nieba, by oddzielały dzień od nocy, i niech stanowią znaki,<RX 19.104.19><RX 42.21.11><RX 42.21.25><RF>Ps 104,19; Łk 21,11.25.<Rf> pory <FI>roku<Fi>, dni i lata.',
+          'I niech będą światłami na firmamencie nieba, aby świeciły nad ziemią. I tak się stało.',
+          'I Bóg uczynił dwa wielkie światła: światło większe, aby rządziło dniem, i światło mniejsze, aby rządziło nocą, oraz gwiazdy.',
+          'I Bóg umieścił je na firmamencie nieba, aby świeciły nad ziemią;',
+          'I żeby rządziły dniem i nocą, i oddzielały światłość od ciemności. I Bóg widział, że to było dobre.',
+          'I nastał wieczór i poranek, dzień czwarty.',
+          'Potem Bóg powiedział: Niech wody hojnie wydadzą żywe istoty, a ptactwo niech lata nad ziemią, pod firmamentem nieba.',
+          'I Bóg stworzył wielkie wieloryby i wszelkie pływające istoty żywe,<RX 54.4.4><RF>1Tm 4,4.<Rf> które hojnie wydały wody, według ich rodzaju oraz wszelkie ptactwo skrzydlate według jego rodzaju. I Bóg widział, że <FI>to było<Fi> dobre.',
+          'Bóg błogosławił je, mówiąc: Bądźcie płodne i rozmnażajcie się,<RX 1.9.1><RX 1.35.11><RF>Rdz 9,1; 35,11.<Rf> i wypełniajcie wody morskie, a ptactwo niech się rozmnaża na ziemi.',
+          'I nastał wieczór i poranek, dzień piąty.',
+          'Bóg powiedział też: Niech ziemia wyda istoty żywe według swego rodzaju:<RX 1.7.14><RF>Rdz 7,14.<Rf> bydło, zwierzęta pełzające i zwierzęta ziemi według swego rodzaju. I tak się stało.',
+          'I Bóg uczynił zwierzęta ziemi według swego rodzaju i bydło według swego rodzaju, i wszelkie zwierzęta, które pełzają po ziemi według swego rodzaju. I Bóg widział, że <FI>to było<Fi> dobre.',
+          'Potem Bóg powiedział: Uczyńmy<RX 39.1.10><RX 43.1.1><RX 43.1.3><RX 51.1.15-16><RF>Ml 1,10; J 1,1.3; Kol 1,15-16.<Rf> człowieka na nasz<RX 1.3.22><RX 1.11.7><RX 43.5.17><RX 45.1.3><RX 51.2.9><RX 62.5.7><RF>Rdz 3,22; 11,7; J 5,17; Rz 1,3; Kol 2,9; 1J 5,7.<Rf> obraz<RX 1.5.1><RX 1.9.6><RX 46.11.7><RX 51.1.15><RF>Rdz 5,1; 9,6; 1Kor 11,7; Kol 1,15.<Rf> według naszego podobieństwa; niech panuje nad rybami morskimi i ptactwem niebieskim, nad bydłem i całą ziemią oraz nad wszelkimi zwierzętami pełzającymi, które pełzają po ziemi.',
+          'Stworzył więc Bóg człowieka na swój obraz, na obraz Boga<RX 1.9.6><RX 51.1.15><RX 47.4.4><RF>Rdz 9,6; Kol 1,15; 2Kor 4,4.<Rf> go stworzył; stworzył ich mężczyzną i kobietą.<RX 40.19.4><RX 41.10.6><RX 46.11.8-9><RF>Mt 19,4; Mk 10,6; 1Kor 11,8-9.<Rf>',
+          'I Bóg błogosławił im. Potem Bóg powiedział do nich: Bądźcie płodni i rozmnażajcie się, napełniajcie ziemię i czyńcie ją sobie poddaną; panujcie nad rybami morskimi i nad ptactwem niebieskim, i nad wszelkimi zwierzętami, które poruszają się po ziemi.',
+          'I Bóg powiedział: Oto dałem wam wszelkie rośliny wydające z siebie nasienie, które są na powierzchni całej ziemi, i wszelkie drzewo mające owoc drzewa, wydające <FI>z siebie<Fi> nasienie – będą one dla was pokarmem.<RX 19.115.16><RX 54.4.4><RF>Ps 115,16; 1Tm 4,4.<Rf>',
+          'I wszelkim zwierzętom ziemi, i wszelkiemu ptactwu niebieskiemu, i wszystkiemu, co pełza po ziemi i <FI>ma<Fi> w sobie życie, pokarmem <FI>będą<Fi> wszelkie rośliny zielone. I tak się stało.',
+          'I Bóg widział wszystko, co uczynił, a <FI>było<Fi> to bardzo dobre. I nastał wieczór i poranek, dzień szósty.<RX 2.20.11><RF>Wj 20,11.<Rf>'
+        ]
       }
     },
     methods: {
-      translate() {
-        return transcript(this.hebrew)
+      translate(index) {
+        return this.ubg[index].replaceAll(/<RX.*?>|<RF>.*?<Rf>|<FI>|<Fi>/gi,'')
       }
     }
   }).mount('#app')
