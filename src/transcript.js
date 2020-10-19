@@ -160,9 +160,6 @@ const code = {
       */
 }
 
-const END = '׃'
-const SHEVA = 'ְ'
-
 function isFirstConsonan(text, i) {
   if (i - 1 !== 0) {
     if (isConsonantLetter(text[i - 1])) {
@@ -231,6 +228,14 @@ export function isVowelOTypeLetter(letter) {
 
 export function isVowelUTypeLetter(letter) {
   return null // TODO
+}
+
+export function isDageshInWord(word) {
+  return word.includes('ּ')
+}
+
+export function isShevaInWord(word) {
+  return word.includes('ְ')
 }
 
 /**
@@ -337,19 +342,18 @@ export function transcriptWord(word, debug) {
   /**
    * 1) podwojenie środkowych samogłosek przez dagesz
    */
-  function ruleDagesz(meta, word, index) {
+  function ruleDagesz(meta, lex, word, index) {
     if (isDoubleLetterDagesh(word, index)) {
-      if (meta.first === false) {
+      if (meta.dagesz === true && meta.first === false) {
 
-        if (meta.dagesz1 === true) {
+        if (lex.length === 1) {
           // TODO sprawdzić, czy wczesniej jest długa lub krótka samogłoska, ale nie szewa
           if (list.length > 0) {
             let prev = list[list.length - 2]
             meta.value = prev.value //podwojenie
           }
         }
-
-        if (meta.dagesz2 === true) {
+        else {
           // dagesz z b
             meta.value = meta.value + meta.value
         }
@@ -362,17 +366,16 @@ export function transcriptWord(word, debug) {
 
     let meta = {
       first: index === 0,
-      last: index === word.length - 1 || word[index + lex.length] === END,
+      last: index === word.length - 1 || word[index + lex.length] === '׃',
       key: lex,
       size: lex.length,
-      value: code[lex],
-      dagesz1: lex === 'ּ',
-      dagesz2: lex.length === 2 && lex[1] === 'ּ',
-      szewa: lex === SHEVA
+      dagesz: isDageshInWord(lex),
+      szewa: isShevaInWord(lex),
+      value: code[lex]
     }
     list.push(meta)
 
-    ruleDagesz(meta, word, index)
+    ruleDagesz(meta, lex, word, index)
     ruleLastHe(meta, lex)
     ruleSilentSzewa(meta, word, index)
     ruleEmpty(meta, lex)
