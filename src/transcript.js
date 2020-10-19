@@ -307,7 +307,28 @@ function isVoicelessConsonant(char) {
   return false
 }
 
-const re = new RegExp(Object.keys(code).join('|'), 'gi')
+/**
+ * 1) podwojenie środkowych samogłosek przez dagesz
+ */
+function ruleDagesz(meta, lex, word, index, list) {
+  if (isDoubleLetterDagesh(word, index)) {
+    if (meta.dagesz === true && meta.first === false) {
+
+      if (lex.length === 1) {
+        // TODO sprawdzić, czy wczesniej jest długa lub krótka samogłoska, ale nie szewa
+        if (list.length > 0) {
+          let prev = list[list.length - 2]
+          meta.value = prev.value //podwojenie
+        }
+      }
+      else {
+        // dagesz z b
+        meta.value = meta.value + meta.value
+      }
+
+    }
+  }
+}
 
 /**
  * 2) nieme he na końcu
@@ -336,38 +357,20 @@ function ruleEmpty(meta, lex) {
 
 export function transcriptWord(word, debug) {
 
+  const re = new RegExp(Object.keys(code).join('|'), 'gi')
+
   let index = 0
   let list = []
 
-  /**
-   * 1) podwojenie środkowych samogłosek przez dagesz
-   */
-  function ruleDagesz(meta, lex, word, index) {
-    if (isDoubleLetterDagesh(word, index)) {
-      if (meta.dagesz === true && meta.first === false) {
+  let match = word.match(re)
 
-        if (lex.length === 1) {
-          // TODO sprawdzić, czy wczesniej jest długa lub krótka samogłoska, ale nie szewa
-          if (list.length > 0) {
-            let prev = list[list.length - 2]
-            meta.value = prev.value //podwojenie
-          }
-        }
-        else {
-          // dagesz z b
-            meta.value = meta.value + meta.value
-        }
-
-      }
-    }
-  }
-
-  let result = word.replace(re, (lex, index, word) => {
+  for(let i = 0; i < match.length; i++) {
+    let lex = match[i]
 
     let meta = {
       first: index === 0,
       last: index === word.length - 1 || word[index + lex.length] === '׃',
-      key: lex,
+      lex: lex,
       size: lex.length,
       dagesz: isDageshInWord(lex),
       szewa: isShevaInWord(lex),
@@ -375,7 +378,8 @@ export function transcriptWord(word, debug) {
     }
     list.push(meta)
 
-    ruleDagesz(meta, lex, word, index)
+    // rules
+    ruleDagesz(meta, lex, word, index, list)
     ruleLastHe(meta, lex)
     ruleSilentSzewa(meta, word, index)
     ruleEmpty(meta, lex)
@@ -384,10 +388,11 @@ export function transcriptWord(word, debug) {
       console.log(lex, index, '[' + word + ']', meta, word[index + 1])
     }
 
-    return meta.value
-  })
+    index = index + lex.length
+  }
 
-  return result
+  let result = list.map( meta => meta.value )
+  return result.join('')
 }
 
 export function transcript(text, debug = false) {

@@ -166,7 +166,7 @@ describe('transcript', () => {
 
     // spółgłoska + samogłoska + spółgłoska
     expect(transcript('לֵב')).toBe('lew')
-    expect(transcript('מִשְׁ|פָּט')).toBe('misz|pat')
+    expect(transcript('מִשְׁפָּט')).toBe('miszpat')
 
     // spółgłoska + spółgłoska + samogłoska + spółgłoska
     expect(transcript('שְׁמוֹת')).toBe('szᵊmot')
