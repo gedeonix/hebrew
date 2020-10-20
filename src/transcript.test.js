@@ -7,6 +7,7 @@ import {
   isSoffitLetter,
   transcript, transcriptWord
 } from './transcript'
+import { normalize } from './normalize'
 
 describe('transcript', () => {
   test('alphabet', () => {
@@ -147,52 +148,6 @@ describe('transcript', () => {
     // expect(transcript('לִלְלל')).toBe('lִlְll')
   })
 
-  test('syllabe1', () => {
-    // expect(transcript('מֶה')).toBe('me')
-    expect(transcript('רְאוּבֵן')).toBe('rᵊuwen') // test na wyłączoną duplikację przez dagesz
-  })
-
-  test('syllabe', () => {
-
-    // sylaba zaczyna się od spółgłoski (wyjątkiem jest szuruk (waw + dagesz = u) na początku)
-
-    // spółgłoska + samogłoska
-    expect(transcript('מָ')).toBe('ma')
-    expect(transcript('מִי')).toBe('mi')
-    expect(transcript('מֶה')).toBe('me')
-
-    // spółgłoska + spółgłoska + samogłoska
-    expect(transcript('בְּרִי')).toBe('bᵊri')  // przy podziale na sylaby nie bierzemy pod uwagę szewy
-
-    // spółgłoska + samogłoska + spółgłoska
-    expect(transcript('לֵב')).toBe('lew')
-    expect(transcript('מִשְׁפָּט')).toBe('miszpat')
-
-    // spółgłoska + spółgłoska + samogłoska + spółgłoska
-    expect(transcript('שְׁמוֹת')).toBe('szᵊmot')
-    expect(transcript('קְטֹל')).toBe('kᵊtol')
-
-    // spółgłoska + samogłoska + spółgłoska + spółgłoska
-    expect(transcript('יֵשְׁתְּ')).toBe('jesztᵊ')
-
-    // sylaba otwarta
-    // - kończy się na samogłoskę lub bezdzwięczną spółgłoskę
-    // - na ogół posiada samogłoskę długą (cere, kamac)
-    // - może być samogłoska krótkam jeśli sylaba jest akcentowana (np. segol, patach)
-
-    expect(transcript('בָּ')).toBe('ba')
-    expect(transcript('בֵּ')).toBe('be')
-
-    // sylaba zamknięta
-    // - kończy się na dzwięczną spółgłoskę // mem, taw, cadi
-    // - na ogół samogłoska krótka (segol, patach,...)
-    // - może być samogłoska długa jeśli sylaba jest akcentowana (np. segol, patach)
-    // - samogłoska w nieakcentowanej musi być krótka
-
-    // TODO
-
-  })
-
   test('dzwięczna szewa (wymawiana)', () => {
     // występuje pod pierwszą z dwóch spółgłosek rozpoczynających sylabę
     // TODO
@@ -257,6 +212,57 @@ describe('transcript', () => {
     expect(convertNumericWord('אבג״ד')).toBe('10')
     expect(convertNumericWord('תרי״ג')).toBe('613') // taryag
     expect(convertNumericWord('1234')).toBe('1234')
+  })
+
+  test('normalize problems', () => {
+    expect(transcript('טֵּ')).toBe('tte')
+    expect(transcript('יְרוּשָׁלִַם')).toBe('jᵊruszalaim')
+  })
+
+  test('syllabe', () => {
+
+    // sylaba zaczyna się od spółgłoski (wyjątkiem jest szuruk (waw + dagesz = u) na początku)
+
+    // spółgłoska + samogłoska
+    expect(transcript('מָ')).toBe('ma')
+    expect(transcript('מִי')).toBe('mi')
+    expect(transcript('מֶה')).toBe('me')
+    expect(transcript('מֶה')).toBe('me')
+
+    // spółgłoska + spółgłoska + samogłoska
+    expect(transcript('בְּרִי')).toBe('bᵊri')  // przy podziale na sylaby nie bierzemy pod uwagę szewy
+
+    // spółgłoska + samogłoska + spółgłoska
+    expect(transcript('לֵב')).toBe('lew')
+    expect(transcript('מִשְׁפָּט')).toBe('miszpat')
+
+    // spółgłoska + spółgłoska + samogłoska + spółgłoska
+    expect(transcript('שְׁמוֹת')).toBe('szᵊmot')
+    expect(transcript('קְטֹל')).toBe('kᵊtol')
+
+    // spółgłoska + samogłoska + spółgłoska + spółgłoska
+    expect(transcript('יֵשְׁתְּ')).toBe('jesztᵊ')
+
+    // sylaba otwarta
+    // - kończy się na samogłoskę lub bezdzwięczną spółgłoskę
+    // - na ogół posiada samogłoskę długą (cere, kamac)
+    // - może być samogłoska krótkam jeśli sylaba jest akcentowana (np. segol, patach)
+
+    expect(transcript('בָּ')).toBe('ba')
+    expect(transcript('בֵּ')).toBe('be')
+
+    // sylaba zamknięta
+    // - kończy się na dzwięczną spółgłoskę // mem, taw, cadi
+    // - na ogół samogłoska krótka (segol, patach,...)
+    // - może być samogłoska długa jeśli sylaba jest akcentowana (np. segol, patach)
+    // - samogłoska w nieakcentowanej musi być krótka
+
+    // TODO
+
+  })
+
+  test('syllabe1', () => {
+    expect(transcript('רְאוּבֵן', true)).toBe('rᵊuwen') // test na wyłączoną duplikację przez dagesz
   })
 
 })

@@ -78,4 +78,4 @@ under license
 >
 > www.sbl-site.org/educational/biblicalfonts.aspx
 
-- manual https://www.sbl-site.org/Fonts/SBLHebrewManualv1.5.pdf
+- manual https://www.sbl-site.org/Fonts/SBLHebrewUserManual1.5x.pdf

@@ -1,0 +1,45 @@
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Interline</title>
+  <link type="text/css" href="css/style.css" rel="stylesheet" charset="utf-8">
+  <link type="text/css" href="css/hebrew.css" rel="stylesheet" charset="utf-8">
+  <link type="text/css" href="css/interline.css" rel="stylesheet" charset="utf-8">
+  <style>
+      .hebrew-vowel {
+          color: #ff0000;
+      }
+      .hebrew-accent-minor, .hebrew-accent-major {
+          color: #00ff00;
+      }
+  </style>
+</head>
+<body class="hebrew">
+<div id="app">
+  <div class="container">
+    <h1>Colors (TODO)</h1>
+    <h2>Test1</h2>
+    <p class="text" dir="rtl">
+      א<span class="hebrew hebrew-vowel">ֱ</span>ל<span class="hebrew-vowel">ֹ</span>ה<span class="hebrew-vowel">ִ</span><span class="hebrew-accent-minor">֤</span>ים
+    </p>
+
+    <hr>
+    <p><b>SBL Fonts</b> are made available without cost to individual scholars for non-profit use</p>
+  </div>
+</div>
+<script defer src="https://unpkg.com/vue@next"></script>
+<script type="module">
+  Vue.createApp({
+    data() {
+      return {
+      }
+    },
+    methods: {
+    }
+  }).mount('#app')
+</script>
+</body>
+</html>

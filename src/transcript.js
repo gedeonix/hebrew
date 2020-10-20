@@ -318,12 +318,12 @@ function ruleDagesz(meta, lex, word, index, list) {
         // TODO sprawdzić, czy wczesniej jest długa lub krótka samogłoska, ale nie szewa
         if (list.length > 0) {
           let prev = list[list.length - 2]
-          meta.value = prev.value //podwojenie
+          meta.transcript = prev.transcript //podwojenie
         }
       }
       else {
         // dagesz z b
-        meta.value = meta.value + meta.value
+        meta.transcript = meta.transcript + meta.transcript
       }
 
     }
@@ -335,7 +335,7 @@ function ruleDagesz(meta, lex, word, index, list) {
  */
 function ruleLastHe(meta, lex) {
   if (lex === 'ה' && meta.first === false && meta.last === true) {
-    meta.value = ''
+    meta.transcript = ''
   }
 }
 
@@ -344,7 +344,7 @@ function ruleLastHe(meta, lex) {
  */
 function ruleSilentSzewa(meta, word, index) {
   if (isSilentSzewa(meta, word, index)) {
-    meta.value = ''
+    meta.transcript = ''
   }
 }
 
@@ -352,7 +352,7 @@ function ruleSilentSzewa(meta, word, index) {
  * 4) pomijam nieme - alef lex ajin
  */
 function ruleEmpty(meta, lex) {
-  meta.value = (meta.value === '') ? '' : meta.value || lex
+  meta.transcript = (meta.transcript === '') ? '' : meta.transcript || lex
 }
 
 export function parse(word, debug) {
@@ -377,7 +377,7 @@ export function parse(word, debug) {
       size: lex.length,
       dagesz: isDageshInWord(lex),
       szewa: isShevaInWord(lex),
-      value: code[lex]
+      transcript: code[lex]
     }
     result.push(meta)
 
@@ -403,7 +403,7 @@ export function transcript(text, debug = false) {
     let result = words
       .map(word => convertNumericWord(word, debug))
       .map(word => parse(word, debug))
-      .map(list => list.map( meta => meta.value ).join('') )
+      .map(list => list.map( meta => meta.transcript ).join('') )
 
     if (result !== undefined) {
       return result.join(' ')
@@ -419,7 +419,7 @@ export function interline(text, debug = false) {
     let result = words
       .map(word => convertNumericWord(word, debug))
       .map(word => parse(word, debug))
-      .map(list => list.map( meta => meta.value ).join('') )
+      .map(list => list.map( meta => meta.transcript ).join('') )
 
   }
   return []
