@@ -25,9 +25,18 @@
 }
 
 .text-translate {
-    font-family: "Times New Roman";
     color: #101010;
     font-size: 1.2rem;
     margin: .4rem;
     padding: .4rem;
+}
+
+.badge {
+    font-family: Arial;
+    background-color: #e0e0e0;
+    color: #ffffff;
+    border-radius: 100rem;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: .25rem .5rem;
 }

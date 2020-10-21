@@ -7,12 +7,13 @@
   <title>Interline</title>
   <link type="text/css" href="css/style.css" rel="stylesheet" charset="utf-8">
   <link type="text/css" href="css/hebrew.css" rel="stylesheet" charset="utf-8">
+  <link type="text/css" href="css/greek.css" rel="stylesheet" charset="utf-8">
   <link type="text/css" href="css/interline.css" rel="stylesheet" charset="utf-8">
 </head>
 <body class="hebrew">
 <div id="app">
   <div class="container">
-    <h1>Interline (Tanach + UBG + KJV)</h1>
+    <h1>Interline (Tanach + UBG + KJV + LXX)</h1>
     <hr>
 
     <h2>Genesis 1:1-31</h2>
@@ -28,8 +29,9 @@
             </div>
           </template>
 
-          <div dir="ltr" class="text-translate">{{verse(index).ubg}}</div>
-          <div dir="ltr" class="text-translate">{{verse(index).kjv}}</div>
+          <div dir="ltr" class="text-translate"><span class="badge">UBG</span> {{verse(index).ubg}}</div>
+          <div dir="ltr" class="text-translate"><span class="badge">KJV</span> {{verse(index).kjv}}</div>
+          <div dir="ltr" class="text-translate"><span class="badge">LXX</span> <span class="greek">{{verse(index).brenton}}</span></div>
 
           <!--
           <div class="text hebrew">{{row}}</div>
@@ -46,6 +48,7 @@
       may be viewed or copied without restriction. (version 26.0)</p>
     <p><b>Updated Gdańsk Bible (Uwspółcześniona Biblia Gdańska)</b> - www.wrotanadziei.org - license: The publisher authorizes all copying and distribution of this work both in part and in its entirety, under the condition that it is done completely free of charge and that the content remains completely unchanged. Distribution for commercial purposes requires written permission from the Foundation.</p>
     <p><b>King James (Authorized) Version</b> - https://en.wikipedia.org/wiki/King_James_Version#Copyright_status for more information. This free text of the King James Version of the Holy Bible is brought to you courtesy of the Crosswire Bible Society and eBible.org.</p>
+    <p><b>Brenton Septuagint</b> - public domain The Greek Septuagint with Apocrypha, compiled by Sir Lancelot C. L. Brenton</p>
   </div>
 </div>
 <script defer src="https://unpkg.com/vue@next"></script>
@@ -155,6 +158,39 @@
           'And God said, Behold, I have given you every herb bearing seed, which is upon the face of all the earth, and every tree, in the which is the fruit of a tree yielding seed; to you it shall be for meat.',
           'And to every beast of the earth, and to every fowl of the air, and to every thing that creepeth upon the earth, wherein there is life, I have given every green herb for meat: and it was so.',
           'And God saw every thing that he had made, and, behold, it was very good. And the evening and the morning were the sixth day.'
+        ],
+        brenton: [
+          'ἘΝ ἀρχῇ ἐποίησεν ὁ Θεὸς τὸν οὐρανὸν καὶ τὴν γῆν.',
+          'Ἡ δὲ γῆ ἦν ἀόρατος καὶ ἀκατασκεύαστος, καὶ σκότος ἐπάνω τῆς ἀβύσσου· καὶ πνεῦμα Θεοῦ ἐπεφέρετο ἐπάνω τοῦ ὕδατος.',
+          'Καὶ εἶπεν ὁ Θεὸς, γενηθήτω φῶς· καὶ ἐγένετο φῶς.',
+          'Καὶ εἶδεν ὁ Θεὸς τὸ φῶς, ὅτι καλόν· καὶ διεχώρισεν ὁ Θεὸς ἀνὰ μέσον τοῦ φωτὸς, καὶ ἀνὰ μέσον τοῦ σκότους.',
+          'Καὶ ἐκάλεσεν ὁ Θεὸς τὸ φῶς ἡμέραν, καὶ τὸ σκότος ἐκάλεσε νύκτα. Καὶ ἐγένετο ἑσπέρα, καὶ ἐγένετο πρωῒ, ἡμέρα μία.',
+          'Καὶ εἶπεν ὁ Θεὸς, γενηθήτω στερέωμα ἐν μέσῳ τοῦ ὕδατος· καὶ ἔστω διαχωρίζον ἀνὰ μέσον ὕδατος καὶ ὕδατος· καὶ ἐγένετο οὕτως.',
+          'Καὶ ἐποίησεν ὁ Θεὸς τὸ στερέωμα· καὶ διεχώρισεν ὁ Θεὸς ἀνὰ μέσον τοῦ ὕδατος, ὃ ἦν ὑποκάτω τοῦ στερεώματος, καὶ ἀνὰ μέσον τοῦ ὕδατος, τοῦ ἐπάνω τοῦ στερεώματος.',
+          'Καὶ ἐκάλεσεν ὁ Θεὸς τὸ στερέωμα οὐρανόν· καὶ εἶδεν ὁ Θεὸς ὅτι καλόν· καὶ ἐγένετο ἑσπέρα, καὶ ἐγένετο πρωῒ, ἡμέρα δευτέρα.',
+          'Καὶ εἶπεν ὁ Θεὸς, συναχθήτω τὸ ὕδωρ τὸ ὑποκάτω τοῦ οὐρανοῦ εἰς συναγωγὴν μίαν, καὶ ὀφθήτω ἡ ξηρά· καὶ ἐγένετο οὕτως· καὶ συνήχθη τὸ ὕδωρ τὸ ὑποκάτω τοῦ οὐρανοῦ εἰς τὰς συναγωγὰς αὐτῶν, καὶ ὤφθη ἡ ξηρά.',
+          'Καὶ ἐκάλεσεν ὁ Θεὸς τὴν ξηρὰν, γῆν· καὶ τὰ συστήματα τῶν ὑδάτων ἐκάλεσε θαλάσσας· καὶ εἶδεν ὁ Θεὸς ὅτι καλόν.',
+          'Καὶ εἶπεν ὁ Θεὸς, βλαστησάτω ἡ γῆ βοτάνην χόρτου, σπεῖρον σπέρμα κατὰ γένος καὶ καθʼ ὁμοιότητα, καὶ ξύλον κάρπιμον ποιοῦν καρπὸν, οὗ τὸ σπέρμα αὐτοῦ ἐν αὐτῷ κατὰ γένος ἐπὶ τῆς γῆς· καὶ ἐγένετο οὕτως.',
+          'Καὶ ἐξήνεγκεν ἡ γῆ βοτάνην χόρτου, σπεῖρον σπέρμα κατὰ γένος καὶ καθʼ ὁμοιότητα, καὶ ξύλον κάρπιμον ποιοῦν καρπὸν, οὗ τὸ σπέρμα αὐτοῦ ἐν αὐτῷ κατὰ γένος ἐπὶ τῆς γῆς· καὶ εἶδεν ὁ Θεὸς ὅτι καλόν.',
+          'Καὶ ἐγένετο ἑσπέρα, καὶ ἐγένετο πρωῒ, ἡμέρα τρίτη.',
+          'Καὶ εἶπεν ὁ Θεὸς, γενηθήτωσαν φωστῆρες ἐν τῷ στερεώματι τοῦ οὐρανοῦ εἰς φαῦσιν ἐπὶ τῆς γῆς, τοῦ διαχωρίζειν ἀνὰ μέσον τῆς ἡμέρας καὶ ἀνὰ μέσον τῆς νυκτός· καὶ ἔστωσαν εἰς σημεῖα, καὶ εἰς καιροὺς, καὶ εἰς ἡμέρας, καὶ εἰς ἐνιαυτούς.',
+          'Καὶ ἔστωσαν εἰς φαῦσιν ἐν τῷ στερεώματι τοῦ οὐρανοῦ, ὥστε φαίνειν ἐπὶ τῆς γῆς· καὶ ἐγένετο οὕτως.',
+          'Καὶ ἐποίησεν ὁ Θεὸς τοὺς δύο φωστῆρας τοὺς μεγάλους· τὸν φωστῆρα τὸν μέγαν εἰς ἀρχὰς τῆς ἡμέρας, καὶ τὸν φωστῆρα τὸν ἐλάσσω εἰς ἀρχὰς τῆς νυκτὸς, καὶ τοὺς ἀστέρας.',
+          'Καὶ ἔθετο αὐτοὺς ὁ Θεὸς ἐν τῷ στερεώματι τοῦ οὐρανοῦ, ὥστε φαίνειν ἐπὶ τῆς γῆς,',
+          'καὶ ἄρχειν τῆς ἡμέρας καὶ τῆς νυκτὸς, καὶ διαχωρίζειν ἀνὰ μέσον τοῦ φωτὸς, καὶ ἀνὰ μέσον τοῦ σκότους· καὶ εἶδεν ὁ Θεὸς ὅτι καλόν.',
+          'Καὶ ἐγένετο ἑσπέρα καὶ ἐγένετο πρωῒ, ἡμέρα τετάρτη.',
+          'Καὶ εἶπεν ὁ Θεὸς, ἐξαγαγέτω τὰ ὕδατα ἑρπετὰ ψυχῶν ζωσῶν, καὶ πετεινὰ πετόμενα ἐπὶ τῆς γῆς κατὰ τὸ στερέωμα τοῦ οὐρανοῦ· καὶ ἐγένετο οὕτως.',
+          'Καὶ ἐποίησεν ὁ Θεὸς τὰ κήτη τὰ μεγάλα, καὶ πᾶσαν ψυχὴν ζώων ἑρπετῶν, ἃ ἐξήγαγε τὰ ὕδατα κατὰ γένη αὐτῶν, καὶ πᾶν πετεινὸν πτερωτὸν κατὰ γένος· καὶ εἶδεν ὁ Θεὸς ὅτι καλά.',
+          'Καὶ εὐλόγησεν αὐτὰ ὁ Θεὸς, λέγων, αὐξάνεσθε καὶ πληθύνεσθε, καὶ πληρώσατε τὰ ὕδατα ἐν ταῖς θαλάσσαις, καὶ τὰ πετεινὰ πληθυνέσθωσαν ἐπὶ τῆς γῆς.',
+          'Καὶ ἐγένετο ἑσπέρα, καὶ ἐγένετο πρωῒ, ἡμέρα πέμπτη.',
+          'Καὶ εἶπεν ὁ Θεὸς, ἐξαγαγέτω ἡ γῆ ψυχὴν ζῶσαν κατὰ γένος, τετράποδα, καὶ ἑρπετὰ, καὶ θηρία τῆς γῆς κατὰ γένος· καὶ ἐγένετο οὕτως.',
+          'Καὶ ἐποίησεν ὁ Θεὸς τὰ θηρία τῆς γῆς κατὰ γένος, καὶ τὰ κτήνη κατὰ γένος αὐτῶν, καὶ πάντα τὰ ἑρπετὰ τῆς γῆς κατὰ γένος· καὶ εἶδεν ὁ Θεὸς ὅτι καλά.',
+          'Καὶ εἶπεν ὁ Θεός, Ποιήσωμεν ἄνθρωπον κατʼ εἰκόνα ἡμετέραν καὶ καθʼ ὁμοίωσιν· καὶ ἀρχέτωσαν τῶν ἰχθύων τῆς θαλάσσης, καὶ τῶν πετεινῶν τοῦ οὐρανοῦ, καὶ τῶν κτηνῶν, καὶ πάσης τῆς γῆς, καὶ πάντων τῶν ἑρπετῶν τῶν ἑρπόντων ἐπὶ τῆς γῆς.',
+          'Καὶ ἐποιήσεν ὁ Θεὸς τὸν ἄνθρωπον· κατʼ εἰκόνα Θεοῦ ἐποίησεν αὐτόν· ἄρσεν καὶ θῆλυ ἐποίησεν αὐτούς.',
+          'Καὶ εὐλόγησεν αὐτοὺς ὁ Θεὸς, λέγων, αὐξάνεσθε καὶ πληθύνεσθε, καὶ πληρώσατε τὴν γῆν, καὶ κατακυριεύσατε αὐτῆς· καὶ ἄρχετε τῶν ἰχθύων τῆς θαλάσσης, καὶ τῶν πετεινῶν τοῦ οὐρανοῦ, καὶ πάντων τῶν κτηνῶν, καὶ πάσης τῆς γῆς, καὶ πάντων τῶν ἑρπετῶν τῶν ἑρπόντων ἐπὶ τῆς γῆς.',
+          'Καὶ εἶπεν ὁ Θεός, Ἰδοὺ δέδωκα ὑμῖν πάντα χόρτον σπόριμον σπεῖρον σπέρμα, ὅ ἐστιν ἐπάνω πάσης τῆς γῆς· καὶ πᾶν ξύλον, ὃ ἔχει ἐν ἑαυτῷ καρπὸν σπέρματος σπορίμου, ὑμῖν ἔσται εἰς βρῶσιν,',
+          'καὶ πᾶσι τοῖς θηρίοις τῆς γῆς, καὶ πᾶσι τοῖς πετεινοῖς τοῦ οὐρανοῦ, καὶ παντὶ ἑρπετῷ ἕρποντι ἐπὶ τῆς γῆς, ὃ ἔχει ἐν ἑαυτῷ ψυχὴν ζωῆς, καὶ πάντα χόρτον χλωρὸν εἰς βρῶσιν· καὶ ἐγένετο οὕτως.',
+          'Καὶ εἶδεν ὁ Θεὸς τὰ πάντα, ὅσα ἐποίησε, καὶ ἰδοὺ καλὰ λίαν· καὶ ἐγένετο ἑσπέρα, καὶ ἐγένετο πρωῒ, ἡμέρα ἕκτη.'
         ]
       }
     },
@@ -163,10 +199,10 @@
         return {
           tanach: this.tanach[index],
           ubg: this.ubg[index].replaceAll(/<RX.*?>|<RF>.*?<Rf>|<FI>|<Fi>/gi,''),
-          kjv: this.kjv[index]
+          kjv: this.kjv[index],
+          brenton: this.brenton[index]
         }
       },
-
     }
   }).mount('#app')
 </script>

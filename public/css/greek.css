@@ -1,0 +1,32 @@
+@font-face {
+    font-family: 'SBL Greek';
+    src: url(../font/SBL_grk.ttf);
+}
+
+.greek {
+    font-family: 'SBL Greek';
+}
+
+.greek_accent {
+    color: #0000ff;
+}
+
+.greek_point {
+    color: #ff6565;
+}
+
+.greek_letter {
+    color: #3dad3d;
+}
+
+.greek-red {
+    color: #c62c2c;
+}
+
+.greek-blue {
+    color: #28289a;
+}
+
+.greek-green {
+    color: #34a534;
+}
