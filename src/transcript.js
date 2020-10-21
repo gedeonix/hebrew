@@ -210,6 +210,31 @@ function isDoubleLetterDagesh(text, index) {
 /**
  * Vowel Letter
  */
+export function isVowelLetter(letter) {
+  return letter >= '\u05b1' && letter <= '\u05bb'
+}
+
+export function isOpenSyllabe(syllabe) {
+  let letter = syllabe.charAt(syllabe.length - 1)
+  return isVowelLetter(letter) === true
+}
+
+export function isClosedSyllabe(syllabe) {
+  let letter = syllabe.charAt(syllabe.length - 1)
+  return isConsonantLetter(letter) === true
+}
+
+export function countVowelsInWord(word) {
+  console.log(word, word.length)
+  let count = 0
+  for(let letter of word) {
+    if(isVowelLetter(letter)) {
+      count++
+    }
+  }
+  return count
+}
+
 export function isVowelATypeLetter(letter) {
   return 'ֲַָ'.includes(letter)
 }
@@ -320,8 +345,7 @@ function ruleDagesz(meta, lex, word, index, list) {
           let prev = list[list.length - 2]
           meta.transcript = prev.transcript //podwojenie
         }
-      }
-      else {
+      } else {
         // dagesz z b
         meta.transcript = meta.transcript + meta.transcript
       }
@@ -363,11 +387,11 @@ export function parse(word, debug) {
   let result = []
 
   let match = word.match(re)
-  if(match === null) {
+  if (match === null) {
     return result
   }
 
-  for(let i = 0; i < match.length; i++) {
+  for (let i = 0; i < match.length; i++) {
     let lex = match[i]
 
     let meta = {
@@ -393,7 +417,7 @@ export function parse(word, debug) {
 
     index = index + lex.length
   }
-  return result;
+  return result
 }
 
 export function transcript(text, debug = false) {
@@ -403,7 +427,7 @@ export function transcript(text, debug = false) {
     let result = words
       .map(word => convertNumericWord(word, debug))
       .map(word => parse(word, debug))
-      .map(list => list.map( meta => meta.transcript ).join('') )
+      .map(list => list.map(meta => meta.transcript).join(''))
 
     if (result !== undefined) {
       return result.join(' ')
@@ -419,7 +443,7 @@ export function interline(text, debug = false) {
     let result = words
       .map(word => convertNumericWord(word, debug))
       .map(word => parse(word, debug))
-      .map(list => list.map( meta => meta.transcript ).join('') )
+      .map(list => list.map(meta => meta.transcript).join(''))
 
   }
   return []

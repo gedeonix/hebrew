@@ -1,13 +1,15 @@
 import {
   convertNumericWord,
+  countVowelsInWord,
   isBegedkephatLetter,
+  isClosedSyllabe,
   isConsonantLetter,
   isGutturalLetter,
   isMatresLectionisLetter,
+  isOpenSyllabe,
   isSoffitLetter,
-  transcript, transcriptWord
+  transcript,
 } from './transcript'
-import { normalize } from './normalize'
 
 describe('transcript', () => {
   test('alphabet', () => {
@@ -221,7 +223,7 @@ describe('transcript', () => {
 
   test('syllabe', () => {
 
-    // sylaba zaczyna się od spółgłoski (wyjątkiem jest szuruk (waw + dagesz = u) na początku)
+    // sylaba zaczyna się zawsze od spółgłoski (wyjątkiem jest szuruk (waw + dagesz = u) na początku)
 
     // spółgłoska + samogłoska
     expect(transcript('מָ')).toBe('ma')
@@ -263,6 +265,24 @@ describe('transcript', () => {
 
   test('syllabe1', () => {
     expect(transcript('רְאוּבֵן', true)).toBe('rᵊuwen') // test na wyłączoną duplikację przez dagesz
+  })
+
+  test('count vowels', () => {
+    expect(countVowelsInWord('רְאוּבֵן')).toBe(1) //TODO
+
+    expect(countVowelsInWord('כִּי')).toBe(1) // ki
+    expect(countVowelsInWord('דָּ|לֶת')).toBe(2) // let|da
+    expect(countVowelsInWord('לָ|רֶ|דֶת')).toBe(3) // det|re|la
+    expect(countVowelsInWord('הָ|רָ|חָ|מָה')).toBe(4) // mah|cha|ra|ha
+  })
+
+  test('open syllabe', () => {
+    // expect(isOpenSyllabe('כִּי')).toBe(true) //TODO
+
+    expect(isOpenSyllabe('לֶת')).toBe(false)
+    expect(isClosedSyllabe('לֶת')).toBe(true)
+
+    expect(isOpenSyllabe('דָּ')).toBe(true)
   })
 
 })
