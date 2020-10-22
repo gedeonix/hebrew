@@ -13,7 +13,7 @@
 <body class="hebrew">
 <div id="app">
   <div class="container">
-    <h1>Interline (Tanach + UBG + KJV + LXX)</h1>
+    <h1>Simple Demo Interline (Tanach + UBG + KJV + LXX)</h1>
     <hr>
 
     <h2>Genesis 1:1-31</h2>
@@ -33,7 +33,7 @@
           <div dir="ltr" class="text-translate"><span class="badge">KJV</span> {{verse(index).kjv}}</div>
 
           <div dir="ltr" class="text-translate"><span class="badge">KJV</span> <span v-html="verse(index).kjvStrongs"></span></div>
-          <div dir="ltr" class="text-translate"><span class="badge">KJV</span> {{verse(index).kjvStrongs}}</div>
+          <div dir="ltr" class="text-translate"><span class="badge">KJV strongs</span> {{verse(index).kjvStrongs}}</div>
           <div dir="ltr" class="text-translate"><span class="badge">LXX</span> <span class="greek">{{verse(index).brenton}}</span></div>
 
           <!--
@@ -56,7 +56,7 @@
 </div>
 <script defer src="https://unpkg.com/vue@next"></script>
 <script type="module">
-  import { interline, transcript } from '../src/transcript.js'
+  import { interline, transcript } from './js/transcript.js'
 
   Vue.createApp({
     data() {
@@ -238,10 +238,7 @@
           kjv: this.kjv[index],
           kjvStrongs: this.kjvStrongs[index]
             .replaceAll(/<[verse|milestone][^>]*>|<note[^>]*>/gi,'')
-            .replaceAll(/strong:|strongMorph:/gi,'')
-            .replaceAll(/ lemma="| morph="/gi,'<b>')
-            .replaceAll(/<w|<\/w>/gi,'')
-            .replaceAll(/">/gi,'</b> '),
+            .replaceAll(/strong:|strongMorph:/gi,''),
           brenton: this.brenton[index]
         }
       },
